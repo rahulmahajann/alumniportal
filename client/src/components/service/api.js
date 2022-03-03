@@ -4,8 +4,20 @@ const URL = 'http://localhost:5000';
 
 export const register = async (username) => {
     try{
-        console.log(username);
+        // console.log(username);
         const awazAii = await axios.post(`${URL}/register`, username);
+        // console.log(awazAii.data);
+        return {
+            information: awazAii.data
+        };
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const newRegisterEmail = async (username) => {
+    try{
+        const awazAii = await axios.post(`${URL}/newuser`, username);
         console.log(awazAii);
     }catch(err){
         console.log(err);

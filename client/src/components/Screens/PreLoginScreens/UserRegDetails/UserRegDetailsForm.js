@@ -1,16 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { color2 } from '../../constants/colors';
-import { adminRegister } from '../../service/api';
+import { color2 } from '../../../constants/colors.js';
+import { adminRegister } from '../../../service/api';
+import '../LoginForm.css';
+
 
 const initialValue = {
-    adminName: '',
-    adminEmail: '',
-    adminPassword: '',
-    adminId:''
+    userSalutaion: '',
+    userEmail: '',
+    userPassword: '',
+    userName:'',
+    userGender:'',
+    userDOB:'',
+    userMobile:'',
+    userCity:'',    
 }
 
-function RegisterAdminForm(props){
+
+
+function UserRegDetailsForm(props){
+
+    const [currentUserEmail, setCurrentUserEmail]=useState('');
+
+    useEffect(()=>{
+        const temp = localStorage.getItem('email');
+        setCurrentUserEmail(temp);
+    },[])
+
+    initialValue.userEmail = currentUserEmail;
+
+    console.log(initialValue);
+
 
     const register__Form = {
         display: 'flex',
@@ -20,6 +40,7 @@ function RegisterAdminForm(props){
         marginBottom: '20px',
         marginLeft:'0%',
         justifyContent: 'center',
+        // color:adminRegis
     }
 
     const heading5 = {
@@ -69,15 +90,14 @@ function RegisterAdminForm(props){
         })
     }
 
-    const submitUserEmail = async(e) => {
-        // console.log(adminRegisterDetails);
-        const apiInformation = await adminRegister(adminRegisterDetails);
-        console.log(apiInformation);
-    }
+    // const submitUserEmail = async(e) => {
+    //     // console.log(adminRegisterDetails);
+    //     const res = await adminRegister(adminRegisterDetails);
+    // }
 
     return(
         <div style = { register__Form } >
-            <h5 style = {heading5} > Signup with your Details </h5>
+            <h5 style = {heading5} > Enter Details </h5>
             <div >
                 <div style = {register__Input} >
                     <div className = 'group'>
@@ -86,17 +106,17 @@ function RegisterAdminForm(props){
                     </div>
                     <div className = 'group'>
                         <label>Email</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'adminEmail' type = 'email' placeholder = 'Email' />
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'adminEmail' type = 'email' placeholder = {currentUserEmail} value={currentUserEmail} disabled />
                     </div>
                     <div className = 'group'>
                         <label>Password</label>
                         <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'adminPassword' type = 'password' placeholder = 'Password' />
                     </div>
                     <div className = 'group'>
-                        <label>EmployeeId</label>
+                        <label>City</label>
                         <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'adminId' type = 'text' placeholder = 'Employee Id' />
                     </div>
-                <button onClick = { (e) => submitUserEmail(e) } style = {register__FormSubmitButton} >Submit</button>
+                <button style = {register__FormSubmitButton} >Submit</button>
                 </div>
             </div>
             <hr />
@@ -107,7 +127,8 @@ function RegisterAdminForm(props){
                 </Link>
             </h3>
         </div>
+    
     )
 }
 
-export default RegisterAdminForm;
+export default UserRegDetailsForm;

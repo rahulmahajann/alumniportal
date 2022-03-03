@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { faGoogle, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './RegisterForm.css';
@@ -113,6 +113,8 @@ function RegisterForm(props){
         border: '1px solid black'
     }
 
+    const navigate = useNavigate();
+
     const [userRegisterEmail, setUserRegisterEmail] = useState(initialValue);
 
     const handleChange = (e) => {
@@ -124,7 +126,14 @@ function RegisterForm(props){
 
     const submitUserEmail = async(e) => {
         // console.log(userRegisterEmail);
-        const res = await register(userRegisterEmail);
+        const apiInformation = await register(userRegisterEmail);
+        console.log(apiInformation);
+        if(apiInformation.information == 'user created'){
+            localStorage.setItem('email', userRegisterEmail.userEmail);
+            navigate('/userregdetail');
+        }else{
+            console.log(apiInformation.information);
+        }
     }
 
     return(

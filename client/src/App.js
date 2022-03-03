@@ -8,10 +8,13 @@ import Gallery from "./components/Screens/CommonScreens/Gallery/Gallery";
 import Home from "./components/Screens/CommonScreens/Home";
 import Members from "./components/Screens/CommonScreens/Members/Members";
 import NewsRoom from "./components/Screens/CommonScreens/Newsroom/Newsroom";
+import AdminHome from "./components/Screens/PostLoginScreens/Admin/AdminHome";
+import AdminProfile from "./components/Screens/PostLoginScreens/Admin/AdminProfile";
 import Login from "./components/Screens/PreLoginScreens/Login";
 import LoginAdmin from "./components/Screens/PreLoginScreens/LoginAdmin";
 import Register from "./components/Screens/PreLoginScreens/Register";
 import RegisterAdmin from "./components/Screens/PreLoginScreens/RegisterAdmin";
+import UserRegDetails from "./components/Screens/PreLoginScreens/UserRegDetails/UserRegDetails";
 
 function App() {
   return (
@@ -24,6 +27,7 @@ function App() {
           <Route path = '/newsroom' element = {<NewsRoom />} />
           {/* <Route path = '/members' element = {<NewsRoom />} /> */}
           <Route path = '/contactus' element = {<ContactUs />} />
+          <Route path = '/alumniassist' element = {<ContactUs />} />
           <Route path = '/gallery' element = {<Gallery />} />
           <Route path = '/members' element = {<Members />} />
           <Route path = '/events' element = {<Events />} />
@@ -31,6 +35,9 @@ function App() {
           <Route path = '/register' element = {<Register />} />
           <Route path = '/registeradmin' element = {<RegisterAdmin />} />
           <Route path = '/loginadmin' element = {<LoginAdmin />} />
+          <Route path = '/userregdetail' element = {<UserRegDetails />} />
+          <Route path = '/admin' element = {<AdminHome />} />
+          <Route path = '/adminprofile' element = {<AdminProfile />} />
         </Routes>
       </BrowserRouter>
     </>

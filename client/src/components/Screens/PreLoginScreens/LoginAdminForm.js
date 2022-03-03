@@ -62,9 +62,7 @@ function LoginAdminForm(props){
         width:'100',
         marginLeft:0,
         display:'flex',
-        flexDirection:'column',
-
-        
+        flexDirection:'column', 
     }
 
     const [adminLoginDetails, setAdminLoginDetails] = useState(initialValue);
@@ -85,6 +83,7 @@ function LoginAdminForm(props){
         if(apiInformation.information.message == 'successfully logged in!'){
             // console.log(apiInformation.adminId);
             localStorage.setItem('IngmmDdooAin', apiInformation.information.adminUniqueId)
+            localStorage.setItem('email', adminLoginDetails.adminEmail)
             navigate('/admin');
         }
     }

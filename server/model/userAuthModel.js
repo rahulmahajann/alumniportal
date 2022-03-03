@@ -1,15 +1,45 @@
 const mongoose = require('mongoose');
 
 const userAuthSchema = mongoose.Schema({
+        userSalutation:{
+            type: String,
+            required: true
+        },
+
         userEmail:{
             type:String,
             required:true,
             unique:true,
         },
 
-        password:{
+        userPassword:{
             type:String,
             reqruied:true,
+        },
+
+        userName:{
+            type: String,
+            reqruied: true,
+        },
+
+        userGender:{
+            type: String,
+            required: true,
+        },
+
+        userDOB:{
+            type: String,
+            required: true
+        },
+
+        userMobile: {
+            type: Number,
+            required: true
+        },
+
+        userCity: {
+            type: String,
+            reqruied: true
         },
 
         isApproved:{

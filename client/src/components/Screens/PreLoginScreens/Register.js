@@ -22,7 +22,7 @@ function Register(){
                                 RegisterForm title = {registerScreenHeading} 
                                 auth = {'Register'} 
                             /> 
-                        } 
+                } 
             />
             <Footer />
         </>

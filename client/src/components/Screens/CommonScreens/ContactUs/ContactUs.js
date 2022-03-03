@@ -9,13 +9,14 @@ import Footer from '../../../CommonComponents/Footer/Footer';
 import '../../PreLoginScreens/LoginForm.css';
 import NormalScreenBody from '../../../CommonComponents/Body/NormalScreenBody';
 import ContactUsForm from './ContactUsForm';
+import AuthScreenBody from '../../../CommonComponents/Body/AuthScreenBody';
 
 function ContactUs(){
     return(
         <>
             <UpperHeader image = {college__logo} />
             <LowerHeader />
-            <NormalScreenBody Heading = {'Contact Us'} Content = {<ContactUsForm />} />
+            <AuthScreenBody Heading = {'Contact Us'} Content = {<ContactUsForm />} />
             <Footer />
         </>
     )
