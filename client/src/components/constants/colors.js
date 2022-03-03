@@ -1,0 +1,11 @@
+export const color1 = '#04195e';
+export const color2 = '#649ABA';
+export const color3 = '#FFFFFF';
+export const color4 = '#485c9cb2';
+export const color5 = '#000000';
+export const color6 = '#0e4e7f';
+export const color7 = '#EEEDDE';
+export const color8 = '#F5F5F5';
+export const color9 = '#64BA8A';
+export const color10 = '#0E76A8';
+export const color11 = '#DB4A39';

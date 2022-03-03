@@ -1,0 +1,1 @@
+export const college__logo = 'https://adgitmdelhi.ac.in/wp-content/uploads/2021/01/ADGITM-WEB-LOGO.png';
