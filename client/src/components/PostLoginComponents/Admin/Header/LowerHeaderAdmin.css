@@ -1,0 +1,78 @@
+:root{
+    --hoverColor: #04195e;
+    --hoverItemMenuColor: #f1f1f1;
+    --hoverItemShadowColor: rgba(0,0,0,0.2);
+    --hoverItemBgColor: #485c9cb2;
+    --hoverItemTextColor: #ffffff;
+    --hoverContentBgColor: #649ABA;
+}
+
+#aboutUs:hover{
+    background: var(--hoverColor);
+}
+
+.hoverContent{
+    display: none;
+    position: absolute;
+    background-color: var(--hoverItemMenuColor);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px var(--hoverItemShadowColor);
+    z-index: 1;
+}
+
+.hoverContentLink:hover{
+    background: var(--hoverItemBgColor);
+}
+
+.hoverContent .hoverContentLink {
+    color: var(--hoverItemTextColor);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+#aboutUs:hover .hoverContent{
+    display: block;
+    background: var(--hoverContentBgColor);
+}
+
+
+#newsRoom:hover {
+    background: var(--hoverColor);
+}
+
+#members:hover {
+    background: var(--hoverColor);
+}
+
+#events:hover {
+    background: var(--hoverColor);
+}
+
+#gallery:hover {
+    background: var(--hoverColor);
+}
+
+#engage:hover {
+    background: var(--hoverColor);
+}
+
+#engage:hover .hoverContent{
+    display: block;
+    background: var(--hoverContentBgColor);
+}
+
+
+#members:hover .hoverContent{
+    display: block;
+    background: var(--hoverContentBgColor);
+}
+
+#contactUs:hover {
+    background: var(--hoverColor);
+}
+
+#alumniAssist:hover {
+    background: var(--hoverColor);
+}

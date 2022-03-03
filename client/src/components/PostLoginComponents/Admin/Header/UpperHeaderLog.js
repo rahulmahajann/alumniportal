@@ -2,8 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { color3 } from '../../../constants/colors';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // files import
+
+toast.configure();
 
 function UpperHeaderLog(props) {
 
@@ -57,6 +61,8 @@ function UpperHeaderLog(props) {
     const logoutFunction = () => {
         localStorage.clear();
         navigate('/');
+        // window.location.reload();
+        toast.success('Successfully Logged Out!')
     }
         
     return(
@@ -68,6 +74,7 @@ function UpperHeaderLog(props) {
 
             <div style = { linkDiv__headerUpper } >
                 <Link style = { link__linkDiv } to = {'/adminprofile'} >{headerEmail}</Link>   
+                {/* <Link to = {'/'} onClick = {logoutFunction} >Logout</Link> */}
                 <button onClick = { logoutFunction } >LogOut</button>
             </div> 
 

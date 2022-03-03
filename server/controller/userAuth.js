@@ -96,4 +96,18 @@ const login = async (req, res) => {
 
 }
 
-module.exports = { newRegisterEmail, login, register };
+const getPendingMembers = async (req, res) => {
+
+    const allPendingMembers = await userAuth.find({isApproved: false});
+    res.json(allPendingMembers);
+
+}
+
+const getApprovedMembers = async (req, res) => {
+
+    const allApprovedMembers = await userAuth.find({isApproved: true});
+    res.json(allApprovedMembers);
+
+}
+
+module.exports = { newRegisterEmail, login, register, getPendingMembers, getApprovedMembers };

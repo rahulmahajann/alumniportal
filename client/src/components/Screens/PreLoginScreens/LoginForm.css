@@ -25,6 +25,12 @@
     border: 2px solid lightblue;
     outline:none;
 }
+.group>select{
+    padding:0.8em;
+    border-radius: 0.5em;
+    border: 2px solid lightblue;
+    outline:none;
+}
 
 textarea{
     resize: none;

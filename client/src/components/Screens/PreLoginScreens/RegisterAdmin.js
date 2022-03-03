@@ -18,10 +18,10 @@ function RegisterAdmin(){
             <AuthScreenBody 
                 Heading = {'Admin Register'} 
                 Content = { 
-                            <
-                                RegisterAdminForm title = {registerScreenHeading} 
-                                auth = {'Register'} 
-                            /> 
+                        <
+                            RegisterAdminForm title = {registerScreenHeading} 
+                            auth = {'Register'} 
+                        /> 
                 } 
             />
             <Footer />

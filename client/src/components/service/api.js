@@ -54,3 +54,22 @@ export const getAdminInfo = async (adminUniqueId) =>{
     }
 }
 
+export const getPendingMembers = async () => {
+    try{
+        console.log('backend pe awaz gayi');
+        const awazAii = await axios.get(`${URL}/pendingmembers`);
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const getApprovedMembers = async () => {
+    try{
+        const awazAii = await axios.get(`${URL}/approvedmembers`);
+        console.log(awazAii.data);
+    }catch(err){
+        console.log(err);
+    }
+}

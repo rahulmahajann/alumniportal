@@ -10,6 +10,8 @@ import Members from "./components/Screens/CommonScreens/Members/Members";
 import NewsRoom from "./components/Screens/CommonScreens/Newsroom/Newsroom";
 import AdminHome from "./components/Screens/PostLoginScreens/Admin/AdminHome";
 import AdminProfile from "./components/Screens/PostLoginScreens/Admin/AdminProfile";
+import PendingMembers from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembers";
+import PendingMembersList from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembersList";
 import Login from "./components/Screens/PreLoginScreens/Login";
 import LoginAdmin from "./components/Screens/PreLoginScreens/LoginAdmin";
 import Register from "./components/Screens/PreLoginScreens/Register";
@@ -25,7 +27,6 @@ function App() {
           <Route path = '/aboutus' element = {<AboutUs />} />
           <Route path = '/visionmission' element = {<VissionMission />} />
           <Route path = '/newsroom' element = {<NewsRoom />} />
-          {/* <Route path = '/members' element = {<NewsRoom />} /> */}
           <Route path = '/contactus' element = {<ContactUs />} />
           <Route path = '/alumniassist' element = {<ContactUs />} />
           <Route path = '/gallery' element = {<Gallery />} />
@@ -38,6 +39,7 @@ function App() {
           <Route path = '/userregdetail' element = {<UserRegDetails />} />
           <Route path = '/admin' element = {<AdminHome />} />
           <Route path = '/adminprofile' element = {<AdminProfile />} />
+          <Route path = '/pendingmembers' element = {<PendingMembersList />} />
         </Routes>
       </BrowserRouter>
     </>

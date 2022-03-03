@@ -3,12 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import { color2 } from '../../constants/colors';
 import { adminLogin } from '../../service/api';
 import './LoginForm.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValue = {
     adminEmail: '',
     adminPassword: '',
 
 }
+
+toast.configure();
 
 function LoginAdminForm(props){ 
 
@@ -80,11 +84,14 @@ function LoginAdminForm(props){
         // console.log(adminLoginDetails);
         const apiInformation = await adminLogin(adminLoginDetails);
         console.log(apiInformation.information.message);
-        if(apiInformation.information.message == 'successfully logged in!'){
+        if(apiInformation.information.message === 'successfully logged in!'){
             // console.log(apiInformation.adminId);
             localStorage.setItem('IngmmDdooAin', apiInformation.information.adminUniqueId)
-            localStorage.setItem('email', adminLoginDetails.adminEmail)
+            localStorage.setItem('email', adminLoginDetails.adminEmail);
             navigate('/admin');
+            toast.success(apiInformation.information.message);
+        }else{
+            toast.error(apiInformation.information.message);
         }
     }
 

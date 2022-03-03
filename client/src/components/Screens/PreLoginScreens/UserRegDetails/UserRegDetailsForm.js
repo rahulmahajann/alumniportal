@@ -1,8 +1,10 @@
 import React, { useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { color2 } from '../../../constants/colors.js';
 import { register } from '../../../service/api';
 import '../LoginForm.css';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+
 
 
 const initialValue = {
@@ -28,7 +30,7 @@ function UserRegDetailsForm(props){
 
     initialValue.userEmail = currentUserEmail;
 
-    console.log(initialValue);
+    // console.log(initialValue);
 
 
     const register__Form = {
@@ -87,13 +89,24 @@ function UserRegDetailsForm(props){
             ...userRegisterDetails,
             [e.target.name]: e.target.value
         })
+
+        // console.log(userRegisterDetails);
     }
 
     const submitUserRegisterDetails = async(e) => {
         e.preventDefault();
         console.log(userRegisterDetails);
-        const res = await register(userRegisterDetails);
+        const apiInformation = await register(userRegisterDetails);
+        console.log(apiInformation);
+        if(apiInformation.information === 'userCreated'){
+            // console.log();
+        }else{
+            console.log(apiInformation.information);
+        }
     }
+
+    const genderOptions=['Male','Female','Other'];
+    const salutationOptions=['Mr.','Mrs.','Ms.','Dr.','Prof.','Other'];
 
     return(
         <div style = { register__Form } >
@@ -101,28 +114,43 @@ function UserRegDetailsForm(props){
             <div >
                 <div style = {register__Input} >
                     <div className = 'group'>
-                        <label>Salutation</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userSalutation' type = 'text' placeholder = 'Salutation' />
-                    </div>
-                    <div className = 'group'>
-                        <label>Email</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userEmail' type = 'email' placeholder = 'Email Id' value={currentUserEmail} disabled />
+
+                    <label>Salutation</label>
+                        <select name="userSalutation"  onChange = { (e) => handleChange(e) } style = {register__FormEmail} default="none">
+                            <option value="Mr">Mr</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Dr">Dr</option>
+                            <option value="Prof">Prof</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        {/* <label>Salutation</label>
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userSalutation' type = 'text' placeholder = 'Salutation' /> */}
                     </div>
                     <div className = 'group'>
                         <label>Name</label>
                         <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userName' type = 'text' placeholder = 'Name' />
                     </div>
                     <div className = 'group'>
+                        <label>Email</label>
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userEmail' type = 'email' placeholder = 'Email Id' value={currentUserEmail} disabled />
+                    </div>
+                    <div className = 'group'>
                         <label>Gender</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userGender' type = 'text' placeholder = 'Gender' />
+                        <select name="userGender"  onChange = { (e) => handleChange(e) } style = {register__FormEmail} default="none">
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        {/* <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userGender' type = 'text' placeholder = 'Gender' /> */}
                     </div>
                     <div className = 'group'>
                         <label>DOB</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userDOB' type = 'date' placeholder = 'DOB' />
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userDOB' type = 'date' placeholder = 'DOB' max={new Date().toISOString().split("T")[0]}/>
                     </div>
                     <div className = 'group'>
                         <label>Mobile</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userMobile' type = 'text' placeholder = 'Mobile' />
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userMobile' type = 'number' placeholder = 'Mobile' />
                     </div>
                     <div className = 'group'>
                         <label>City</label>
