@@ -4,7 +4,7 @@ import { faGoogle, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './RegisterForm.css';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
-import { register } from '../../service/api';
+import { newRegisterEmail, register } from '../../service/api';
 
 const initialValue = {
     userEmail: ''
@@ -126,9 +126,9 @@ function RegisterForm(props){
 
     const submitUserEmail = async(e) => {
         // console.log(userRegisterEmail);
-        const apiInformation = await register(userRegisterEmail);
+        const apiInformation = await newRegisterEmail(userRegisterEmail);
         console.log(apiInformation);
-        if(apiInformation.information == 'user created'){
+        if(apiInformation.information === 'Unique Email'){
             localStorage.setItem('email', userRegisterEmail.userEmail);
             navigate('/userregdetail');
         }else{

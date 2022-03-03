@@ -18,7 +18,10 @@ export const register = async (username) => {
 export const newRegisterEmail = async (username) => {
     try{
         const awazAii = await axios.post(`${URL}/newuser`, username);
-        console.log(awazAii);
+        // console.log(awazAii);
+        return {
+            information: awazAii.data
+        }
     }catch(err){
         console.log(err);
     }

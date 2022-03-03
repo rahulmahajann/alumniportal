@@ -1,7 +1,7 @@
 const userAuth = require('../model/userAuthModel.js');
 const bcrypt = require('bcryptjs');
 
-const register = async (req,res) => {
+const newRegisterEmail = async (req,res) => {
 
     console.log(req.body);
 
@@ -19,15 +19,17 @@ const register = async (req,res) => {
 
     if(isUsernameExist){
         return res.json("User already exists for this email");
+    }else{
+        return res.json('Unique Email')
     }
 
-    const newUserAuth = new userAuth({
-        userEmail,
-    });
+    // const newUserAuth = new userAuth({
+    //     userEmail,
+    // });
 
-    newUserAuth.save()
-        .then(()=>res.json("user created"))
-        .catch((err)=>res.json("error occured",err));
+    // newUserAuth.save()
+    //     .then(()=>res.json("user created"))
+    //     .catch((err)=>res.status(200).json("error occured",err));
 
 }
 
@@ -37,7 +39,7 @@ const login = async (req, res) => {
     const userPassword = req.body.userPassword;
 
     if(!userEmail || !userPassword){
-        return res.json('Data not complete');
+        return res.status(200).json('Data not complete');
     }
 
     const isUserEmailExist = await userAuth.findOne({userEmail});
@@ -58,4 +60,4 @@ const login = async (req, res) => {
 
 }
 
-module.exports = { register, login };
+module.exports = { newRegisterEmail, login };
