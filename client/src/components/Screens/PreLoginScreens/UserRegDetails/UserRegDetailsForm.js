@@ -1,14 +1,13 @@
 import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { color2 } from '../../../constants/colors.js';
-import { adminRegister } from '../../../service/api';
+import { register } from '../../../service/api';
 import '../LoginForm.css';
 
 
 const initialValue = {
-    userSalutaion: '',
+    userSalutation: '',
     userEmail: '',
-    userPassword: '',
     userName:'',
     userGender:'',
     userDOB:'',
@@ -81,19 +80,20 @@ function UserRegDetailsForm(props){
         marginLeft:'25%',
     }
 
-    const [adminRegisterDetails, setAdminRegisterDetails] = useState(initialValue);
+    const [userRegisterDetails, setUserRegisterDetails] = useState(initialValue);
 
     const handleChange = (e) => {
-        setAdminRegisterDetails({
-            ...adminRegisterDetails,
+        setUserRegisterDetails({
+            ...userRegisterDetails,
             [e.target.name]: e.target.value
         })
     }
 
-    // const submitUserEmail = async(e) => {
-    //     // console.log(adminRegisterDetails);
-    //     const res = await adminRegister(adminRegisterDetails);
-    // }
+    const submitUserRegisterDetails = async(e) => {
+        e.preventDefault();
+        console.log(userRegisterDetails);
+        const res = await register(userRegisterDetails);
+    }
 
     return(
         <div style = { register__Form } >
@@ -101,31 +101,37 @@ function UserRegDetailsForm(props){
             <div >
                 <div style = {register__Input} >
                     <div className = 'group'>
-                        <label>Name</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'adminName' type = 'text' placeholder = 'Name' />
+                        <label>Salutation</label>
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userSalutation' type = 'text' placeholder = 'Salutation' />
                     </div>
                     <div className = 'group'>
                         <label>Email</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'adminEmail' type = 'email' placeholder = {currentUserEmail} value={currentUserEmail} disabled />
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userEmail' type = 'email' placeholder = 'Email Id' value={currentUserEmail} disabled />
                     </div>
                     <div className = 'group'>
-                        <label>Password</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'adminPassword' type = 'password' placeholder = 'Password' />
+                        <label>Name</label>
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userName' type = 'text' placeholder = 'Name' />
+                    </div>
+                    <div className = 'group'>
+                        <label>Gender</label>
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userGender' type = 'text' placeholder = 'Gender' />
+                    </div>
+                    <div className = 'group'>
+                        <label>DOB</label>
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userDOB' type = 'date' placeholder = 'DOB' />
+                    </div>
+                    <div className = 'group'>
+                        <label>Mobile</label>
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userMobile' type = 'text' placeholder = 'Mobile' />
                     </div>
                     <div className = 'group'>
                         <label>City</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'adminId' type = 'text' placeholder = 'Employee Id' />
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userCity' type = 'text' placeholder = 'City' />
                     </div>
-                <button style = {register__FormSubmitButton} >Submit</button>
+                <button style = {register__FormSubmitButton} onClick = { (e) => {submitUserRegisterDetails(e)} } >Submit</button>
                 </div>
             </div>
-            <hr />
-            <h3 style = {heading3} >
-                Already Member?
-                <Link style = {link__Style} to = {'/loginadmin'} >
-                    {'\t'}Click here to login
-                </Link>
-            </h3>
+           
         </div>
     
     )

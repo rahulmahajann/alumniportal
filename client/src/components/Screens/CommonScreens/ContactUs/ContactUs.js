@@ -10,11 +10,14 @@ import '../../PreLoginScreens/LoginForm.css';
 import NormalScreenBody from '../../../CommonComponents/Body/NormalScreenBody';
 import ContactUsForm from './ContactUsForm';
 import AuthScreenBody from '../../../CommonComponents/Body/AuthScreenBody';
+import UpperHeaderLog from '../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
 
 function ContactUs(){
     return(
         <>
-            <UpperHeader image = {college__logo} />
+            {
+                localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : <UpperHeader image = { college__logo } />
+            }
             <LowerHeader />
             <AuthScreenBody Heading = {'Contact Us'} Content = {<ContactUsForm />} />
             <Footer />

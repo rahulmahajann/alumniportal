@@ -1,11 +1,47 @@
 const userAuth = require('../model/userAuthModel.js');
 const bcrypt = require('bcryptjs');
 
+const register = async (req, res) => {
+    
+    console.log(req.body);
+
+    const userSalutation = req.body.userSalutation;
+    const userEmail = req.body.userEmail;
+    const userName = req.body.userName;
+    const userGender = req.body.userGender;
+    const userDOB = req.body.userDOB;
+    const userMobile = req.body.userMobile;
+    const userCity = req.body.userCity;
+
+    if(!userSalutation || !userEmail || !userName || !userGender || !userDOB || !userMobile || !userCity){
+        return res.json('Data not complete');       
+    }else{
+        const newUserAuth = new userAuth({
+            userSalutation,
+            userEmail,
+            userName,
+            userGender,
+            userDOB,
+            userMobile,
+            userCity
+        })
+
+        newUserAuth.save()
+            .then(() => {
+                res.json('userCreated')
+            }).catch((err) => {
+                res.json(err)
+            })
+    }
+
+
+}
+
 const newRegisterEmail = async (req,res) => {
 
     console.log(req.body);
 
-    const userEmail = await req.body.userEmail;
+    const userEmail = req.body.userEmail;
 
     console.log(userEmail);
 
@@ -60,4 +96,4 @@ const login = async (req, res) => {
 
 }
 
-module.exports = { newRegisterEmail, login };
+module.exports = { newRegisterEmail, login, register };

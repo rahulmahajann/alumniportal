@@ -3,7 +3,7 @@ import { color3, color7, color8 } from '../../constants/colors';
 
 function NormalScreenBody(props){
 
-    console.log(props);
+    // console.log(props);
 
     const reusableContainer__Content = {
         minHeight: '73.7vh',
@@ -16,6 +16,7 @@ function NormalScreenBody(props){
     const reuseableContainer__Data = {
         background: color3,
         width: '45vw',
+        marginBottom: '20px',
         padding: '15px',
         fontSize: '20px',
         lineHeight: '2',

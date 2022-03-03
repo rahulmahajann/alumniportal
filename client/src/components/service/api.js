@@ -4,9 +4,8 @@ const URL = 'http://localhost:5000';
 
 export const register = async (username) => {
     try{
-        // console.log(username);
         const awazAii = await axios.post(`${URL}/register`, username);
-        // console.log(awazAii.data);
+        console.log(awazAii.data);
         return {
             information: awazAii.data
         };
@@ -18,7 +17,6 @@ export const register = async (username) => {
 export const newRegisterEmail = async (username) => {
     try{
         const awazAii = await axios.post(`${URL}/newuser`, username);
-        // console.log(awazAii);
         return {
             information: awazAii.data
         }
@@ -29,7 +27,6 @@ export const newRegisterEmail = async (username) => {
 
 export const adminRegister = async (adminDetails) => {
     try{
-        // console.log(adminDetails);
         const awazAii = await axios.post(`${URL}/adminregister`, adminDetails);
         console.log(awazAii);
     }catch(err){
@@ -39,9 +36,7 @@ export const adminRegister = async (adminDetails) => {
 
 export const adminLogin = async (adminDetails) => {
     try{
-        // console.log(adminDetails);
         const awazAii = await axios.post(`${URL}/adminlogin`, adminDetails);
-        // console.log(awazAii);
         return {
             information: awazAii.data
         }
@@ -52,11 +47,8 @@ export const adminLogin = async (adminDetails) => {
 
 export const getAdminInfo = async (adminUniqueId) =>{
     try{
-        // console.log(adminUniqueId);
         const awazAii = await axios.post(`${URL}/adminInfo`, { adminUniqueId });
-        // console.log(awazAii);
         return awazAii.data;
-        // return 
     }catch(err){
         console.log(err);
     }

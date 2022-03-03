@@ -82,7 +82,7 @@ function ContactUsForm(){
 
                     <div className = 'group'>
                         <label>Contact No.</label>
-                        <input style = {register__FormEmail} type = 'number' min = '1000000000' max = '9999999999' onChange = { (e) => updateValue(e)} name = 'userPhoneNo' placeholder = 'Phone Number' />
+                        <input style = {register__FormEmail} type = 'number'  onChange = { (e) => updateValue(e)} name = 'userPhoneNo' placeholder = 'Phone Number' />
                     </div>
 
                     <div className = 'group'>
