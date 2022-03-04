@@ -42,6 +42,27 @@ const userAuthSchema = mongoose.Schema({
             reqruied: true
         },
 
+        userEnrollmentNumber: {
+            type: Number,
+            unique: true,
+            required: true
+        },
+
+        userBatch: {
+            type: String,
+            required: true,
+        },
+
+        userCourseAndBranch: {
+            type: String,
+            required: true,
+        },
+
+        userImage: {
+            type: String,
+            reqruied: true
+        },
+
         isApproved:{
             type:Boolean,
             default:false,

@@ -1,10 +1,15 @@
 import React, { useState,useEffect } from 'react';
 import { color2 } from '../../../constants/colors.js';
-import { register } from '../../../service/api';
+import { uniqueMobile } from '../../../service/api';
 import '../LoginForm.css';
-import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import UserExtraDetails from './UserExtraDetails.js';
 
+// files import
+
+toast.configure();
 
 
 const initialValue = {
@@ -64,18 +69,6 @@ function UserRegDetailsForm(props){
         border: 'none'
     }
 
-    const heading3 = {
-        fontSize: '15px',
-        marginTop: '10px',
-        marginLeft: '25%',
-
-    }
-
-    const link__Style = {
-        textDecoration: 'none',
-        color: 'inherit'
-    }
-
     const register__Input={
         display:'flex',
         flexDirection:'column',
@@ -84,26 +77,40 @@ function UserRegDetailsForm(props){
     }
 
     const [userRegisterDetails, setUserRegisterDetails] = useState(initialValue);
+    const [continueForm, setContinueForm] = useState(false);
 
-    const handleChange = (e) => {
+    const handleChange = async (e) => {
+
+
         setUserRegisterDetails({
             ...userRegisterDetails,
             [e.target.name]: e.target.value
         })
-
-        // console.log(userRegisterDetails);
     }
 
-    const submitUserRegisterDetails = async(e) => {
-        e.preventDefault();
-        console.log(userRegisterDetails);
-        const apiInformation = await register(userRegisterDetails);
-        console.log(apiInformation);
-        if(apiInformation.information === 'userCreated'){
-            // console.log();
-        }else{
-            console.log(apiInformation.information);
+    const loadNewData = async (e) => {
+
+        let count = 0;
+
+        for(const property in userRegisterDetails){
+            if(!userRegisterDetails[property]){
+                toast.error(`${property.substring(4)} is missing`);
+            }else{
+                count++
+            }
         }
+
+        const isUniqueNumber = await uniqueMobile(userRegisterDetails.userMobile);
+
+        if(isUniqueNumber == 'duplicate mobile number'){
+            toast.error(isUniqueNumber);
+            // count--;
+        }else{
+            if(count == Object.keys(userRegisterDetails).length){
+                setContinueForm(true)
+            }
+        }
+
     }
 
     return(
@@ -112,9 +119,9 @@ function UserRegDetailsForm(props){
             <div >
                 <div style = {register__Input} >
                     <div className = 'group'>
-
                     <label>Salutation</label>
-                        <select name="userSalutation"  onChange = { (e) => handleChange(e) } style = {register__FormEmail} default="none">
+                        <select name="userSalutation"  onChange = { (e) => handleChange(e) } style = {register__FormEmail} default="none" disabled = {continueForm}>
+                            <option value="">Select</option>
                             <option value="Ms">Ms</option>
                             <option value="Mrs">Mrs</option>
                             <option value="Mr">Mr</option>
@@ -123,12 +130,10 @@ function UserRegDetailsForm(props){
                             <option value="Er">Er</option>
                             <option value="Other">Other</option>
                         </select>
-                        {/* <label>Salutation</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userSalutation' type = 'text' placeholder = 'Salutation' /> */}
                     </div>
                     <div className = 'group'>
                         <label>Name</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userName' type = 'text' placeholder = 'Name' />
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userName' type = 'text' placeholder = 'Name' disabled = {continueForm}/>
                     </div>
                     <div className = 'group'>
                         <label>Email</label>
@@ -136,7 +141,8 @@ function UserRegDetailsForm(props){
                     </div>
                     <div className = 'group'>
                         <label>Gender</label>
-                        <select name="userGender"  onChange = { (e) => handleChange(e) } style = {register__FormEmail} default="none">
+                        <select name="userGender"  onChange = { (e) => handleChange(e) } style = {register__FormEmail} default="none" disabled = {continueForm}>
+                            <option value="">Select</option>
                             <option value="Female">Female</option>
                             <option value="Male">Male</option>
                             <option value="Other">Other</option>
@@ -145,19 +151,21 @@ function UserRegDetailsForm(props){
                     </div>
                     <div className = 'group'>
                         <label>DOB</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userDOB' type = 'date' placeholder = 'DOB' max={new Date().toISOString().split("T")[0]}/>
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userDOB' type = 'date' placeholder = 'DOB' max={new Date().toISOString().split("T")[0]} disabled = {continueForm}/>
                     </div>
                     <div className = 'group'>
                         <label>Mobile</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userMobile' type = 'number' placeholder = 'Mobile' />
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userMobile' type = 'number' placeholder = 'Mobile' disabled = {continueForm}/>
                     </div>
                     <div className = 'group'>
                         <label>City</label>
-                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userCity' type = 'text' placeholder = 'City' />
+                        <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userCity' type = 'text' placeholder = 'City' disabled = {continueForm}/>
                     </div>
-                <button style = {register__FormSubmitButton} onClick = { (e) => {submitUserRegisterDetails(e)} } >Submit</button>
+                    <button style = {register__FormSubmitButton} onClick = { (e) => {loadNewData(e)} } disabled = {continueForm} >Continue</button>
                 </div>
             </div>
+
+            { continueForm && <UserExtraDetails initialInformation = {userRegisterDetails} /> }
            
         </div>
     

@@ -86,8 +86,29 @@ export const updatePendingMember = async (userId) => {
 
 export const deletePendingMember = async (userId) => {
     try{
-        console.log(userId);
+        // console.log(userId);
         const awazAii = await axios.post(`${URL}/deletependingmember`, {userId});
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const uniqueMobile = async (userMobile) => {
+    try{
+        // console.log(userMobile);
+        const awazAii = await axios.post(`${URL}/uniquemobile`, {userMobile});
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const uniqueRollNumber = async (userEnrollmentNumber) => {
+    try{
+        const awazAii = await axios.post(`${URL}/uniquerollnumber`, {userEnrollmentNumber});
         // console.log(awazAii);
         return awazAii.data;
     }catch(err){

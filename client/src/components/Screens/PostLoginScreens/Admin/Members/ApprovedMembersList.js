@@ -16,7 +16,7 @@ function ApprovedMembersList(){
 
         setApprovedMembers(activeUsers);
 
-    });
+    },[]);
 
 
     return(

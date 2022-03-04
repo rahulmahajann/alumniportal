@@ -1,5 +1,6 @@
 const userAuth = require('../model/userAuthModel.js');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
 
 const register = async (req, res) => {
     
@@ -12,8 +13,14 @@ const register = async (req, res) => {
     const userDOB = req.body.userDOB;
     const userMobile = req.body.userMobile;
     const userCity = req.body.userCity;
+    const userImage = req.body.userImage;
+    const userBatch = req.body.userBatch;
+    const userCourseAndBranch = req.body.userCourseAndBranch;
+    const userEnrollmentNumber = req.body.userEnrollmentNumber;
 
-    if(!userSalutation || !userEmail || !userName || !userGender || !userDOB || !userMobile || !userCity){
+    console.log(userImage, userBatch, userCourseAndBranch, userEnrollmentNumber);
+
+    if(!userSalutation || !userEmail || !userName || !userGender || !userDOB || !userMobile || !userCity || !userImage || !userCourseAndBranch || !userBatch || !userEnrollmentNumber){
         return res.json('Data not complete');       
     }else{
         const newUserAuth = new userAuth({
@@ -23,7 +30,11 @@ const register = async (req, res) => {
             userGender,
             userDOB,
             userMobile,
-            userCity
+            userCity,
+            userImage,
+            userEnrollmentNumber,
+            userBatch,
+            userCourseAndBranch
         })
 
         newUserAuth.save()
@@ -58,14 +69,38 @@ const newRegisterEmail = async (req,res) => {
     }else{
         return res.json('Unique Email')
     }
+}
 
-    // const newUserAuth = new userAuth({
-    //     userEmail,
-    // });
+const uniqueMobile = async (req, res) => {
 
-    // newUserAuth.save()
-    //     .then(()=>res.json("user created"))
-    //     .catch((err)=>res.status(200).json("error occured",err));
+    console.log(req.body);
+
+    const userMobile = req.body.userMobile;
+
+
+    const isUserMobile = await userAuth.find({userMobile});
+
+    console.log('isUserMobile', isUserMobile);
+
+    if(isUserMobile.length != 0){
+        console.log('dup');
+        return res.json('duplicate mobile number');
+    }else{
+        return res.json('unique mobile number');
+    }
+    
+}
+
+const uniqueRollNumber = async (req, res) => {
+    const userEnrollmentNumber = req.body.userEnrollmentNumber;
+
+    const isUserRollNumber = await userAuth.find({userEnrollmentNumber});
+
+    if(isUserRollNumber.length != 0){
+        return res.json('duplicate enrollment number');
+    }else{
+        return res.json('unique enrollment number');
+    }
 
 }
 
@@ -73,17 +108,13 @@ const login = async (req, res) => {
     
     const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
-
     if(!userEmail || !userPassword){
         return res.status(200).json('Data not complete');
     }
 
     const isUserEmailExist = await userAuth.findOne({userEmail});
-
     if(isUserEmailExist){
-        
         const isValidPassword = await bcrypt.compare(userPassword, isUserEmailExist);
-
         if(isValidPassword){
 
         }else{
@@ -113,9 +144,34 @@ const getApprovedMembers = async (req, res) => {
 const updatePendingMember = async (req, res) => {
     const userId = req.body.userId;
 
+    console.log(userId);
+
+    const userInfo = await userAuth.find({_id: userId});
+
     await userAuth.findByIdAndUpdate(userId, {
         isApproved: true
     })
+
+    console.log(userInfo)
+
+    const transpoter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'alumniadgitm@gmail.com',
+            pass: 'kiazrbylovqfzori'
+        }
+    })
+
+    // console.log(userInfo);
+
+    const mailOptions = {
+        from: 'alumniadgitm@gmail.com',
+        to: userInfo[0].userEmail,
+        subject: 'Congratulation Registered Successfully',
+        text: 'registered succesfully'
+    }
+
+    transpoter.sendMail(mailOptions);
 
     return res.json('user Approved');
 }
@@ -128,4 +184,4 @@ const deletePendingMember = async (req, res) => {
 
 }
 
-module.exports = { newRegisterEmail, login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember };
+module.exports = { newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber };
