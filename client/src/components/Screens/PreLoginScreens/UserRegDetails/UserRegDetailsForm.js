@@ -60,7 +60,8 @@ function UserRegDetailsForm(props){
         height: '45px', 
         marginBottom: '20px',
         background: color2,
-        borderRadius: '5px'
+        borderRadius: '5px',
+        border: 'none'
     }
 
     const heading3 = {
@@ -105,9 +106,6 @@ function UserRegDetailsForm(props){
         }
     }
 
-    const genderOptions=['Male','Female','Other'];
-    const salutationOptions=['Mr.','Mrs.','Ms.','Dr.','Prof.','Other'];
-
     return(
         <div style = { register__Form } >
             <h5 style = {heading5} > Enter Details </h5>
@@ -117,11 +115,12 @@ function UserRegDetailsForm(props){
 
                     <label>Salutation</label>
                         <select name="userSalutation"  onChange = { (e) => handleChange(e) } style = {register__FormEmail} default="none">
-                            <option value="Mr">Mr</option>
                             <option value="Ms">Ms</option>
                             <option value="Mrs">Mrs</option>
+                            <option value="Mr">Mr</option>
                             <option value="Dr">Dr</option>
                             <option value="Prof">Prof</option>
+                            <option value="Er">Er</option>
                             <option value="Other">Other</option>
                         </select>
                         {/* <label>Salutation</label>

@@ -68,7 +68,28 @@ export const getPendingMembers = async () => {
 export const getApprovedMembers = async () => {
     try{
         const awazAii = await axios.get(`${URL}/approvedmembers`);
-        console.log(awazAii.data);
+        // console.log(awazAii.data);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const updatePendingMember = async (userId) => {
+    try{
+        const awazAii = await axios.put(`${URL}/updatependingmember`, {userId});
+        console.log(awazAii);
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const deletePendingMember = async (userId) => {
+    try{
+        console.log(userId);
+        const awazAii = await axios.post(`${URL}/deletependingmember`, {userId});
+        // console.log(awazAii);
+        return awazAii.data;
     }catch(err){
         console.log(err);
     }

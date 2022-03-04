@@ -8,6 +8,7 @@ import { college__logo } from '../../../constants/images';
 import Footer from '../../../CommonComponents/Footer/Footer';
 import UpperHeader from '../../../PreLoginComponents/Header/UpperHeader';
 import UpperHeaderLog from '../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
+import LowerHeaderAdmin from '../../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
 
 function Events(){
     return(
@@ -15,7 +16,9 @@ function Events(){
             {
                 localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : <UpperHeader image = { college__logo } />
             }
-            <LowerHeader />
+            {
+                localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />
+            }
             <NormalScreenBody Heading = {'Events'} />
             <Footer />
         </>

@@ -88,6 +88,7 @@ function LoginAdminForm(props){
         if(apiInformation.information.message === 'successfully logged in!'){
             // console.log(apiInformation.adminId);
             localStorage.setItem('IngmmDdooAin', apiInformation.information.adminUniqueId)
+            localStorage.setItem('isAdmin', apiInformation.information.isAdmin);
             localStorage.setItem('email', adminLoginDetails.adminEmail);
             navigate('/admin');
             toast.success(apiInformation.information.message);

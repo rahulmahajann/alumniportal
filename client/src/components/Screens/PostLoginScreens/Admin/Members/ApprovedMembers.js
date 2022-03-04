@@ -4,20 +4,20 @@ import Footer from '../../../../CommonComponents/Footer/Footer';
 import { college__logo } from '../../../../constants/images';
 import LowerHeaderAdmin from '../../../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
 import UpperHeaderLog from '../../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
-import PendingMembersList from './PendingMembersList';
+import ApprovedMembersList from './ApprovedMembersList';
 
-function PendingMembers(){
+function ApprovedMembers(){
     return(
         <>
             <UpperHeaderLog image = {college__logo} />
             <LowerHeaderAdmin />
             <NormalScreenBody 
-                Heading = {'Pending Members'}
-                Content = {<PendingMembersList />}
+                Heading = {'Approved Members'}
+                Content = {<ApprovedMembersList />}
             />
             <Footer />
         </>
     )
 }
 
-export default PendingMembers;
+export default ApprovedMembers;

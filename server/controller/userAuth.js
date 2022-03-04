@@ -99,15 +99,33 @@ const login = async (req, res) => {
 const getPendingMembers = async (req, res) => {
 
     const allPendingMembers = await userAuth.find({isApproved: false});
-    res.json(allPendingMembers);
+    return res.json(allPendingMembers);
 
 }
 
 const getApprovedMembers = async (req, res) => {
 
     const allApprovedMembers = await userAuth.find({isApproved: true});
-    res.json(allApprovedMembers);
+    return res.json(allApprovedMembers);
 
 }
 
-module.exports = { newRegisterEmail, login, register, getPendingMembers, getApprovedMembers };
+const updatePendingMember = async (req, res) => {
+    const userId = req.body.userId;
+
+    await userAuth.findByIdAndUpdate(userId, {
+        isApproved: true
+    })
+
+    return res.json('user Approved');
+}
+
+const deletePendingMember = async (req, res) => {
+    console.log(req.body);
+    const userId = req.body.userId;
+    await userAuth.findByIdAndDelete(userId);
+    return res.json('user removed successfully');
+
+}
+
+module.exports = { newRegisterEmail, login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember };

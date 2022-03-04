@@ -10,6 +10,7 @@ import Members from "./components/Screens/CommonScreens/Members/Members";
 import NewsRoom from "./components/Screens/CommonScreens/Newsroom/Newsroom";
 import AdminHome from "./components/Screens/PostLoginScreens/Admin/AdminHome";
 import AdminProfile from "./components/Screens/PostLoginScreens/Admin/AdminProfile";
+import ApprovedMembers from "./components/Screens/PostLoginScreens/Admin/Members/ApprovedMembers";
 import PendingMembers from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembers";
 import PendingMembersList from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembersList";
 import Login from "./components/Screens/PreLoginScreens/Login";
@@ -39,7 +40,8 @@ function App() {
           <Route path = '/userregdetail' element = {<UserRegDetails />} />
           <Route path = '/admin' element = {<AdminHome />} />
           <Route path = '/adminprofile' element = {<AdminProfile />} />
-          <Route path = '/pendingmembers' element = {<PendingMembersList />} />
+          <Route path = '/pendingmembers' element = {<PendingMembers />} />
+          <Route path = '/approvedmembers' element = {<ApprovedMembers />} />
         </Routes>
       </BrowserRouter>
     </>

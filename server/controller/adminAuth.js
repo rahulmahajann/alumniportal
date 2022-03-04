@@ -67,7 +67,8 @@ const login = async (req, res) => {
         if(isValidPassword){
             return res.json({
                 message: 'successfully logged in!',
-                adminUniqueId: isAdminEmailExist._id
+                adminUniqueId: isAdminEmailExist._id,
+                isAdmin: isAdminEmailExist.isAdmin
             })
         }else{
             return res.json({message: 'username or password is not valid'})

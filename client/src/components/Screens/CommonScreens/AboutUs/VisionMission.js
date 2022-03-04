@@ -9,6 +9,7 @@ import NormalScreenBody from '../../../CommonComponents/Body/NormalScreenBody';
 import { visionNmission } from '../../../constants/strings';
 import Footer from '../../../CommonComponents/Footer/Footer';
 import UpperHeaderLog from '../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
+import LowerHeaderAdmin from '../../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
 
 function VissionMission(){
     return(
@@ -16,7 +17,9 @@ function VissionMission(){
             {
                 localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : <UpperHeader image = { college__logo } />
             }
-            <LowerHeader />
+            {
+                localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />
+            }
             <NormalScreenBody 
                 Heading = {'Vission & Mission'}
                 Content = { visionNmission }

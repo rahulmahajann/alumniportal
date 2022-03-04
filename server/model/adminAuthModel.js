@@ -17,6 +17,10 @@ const adminAuthSchema = mongoose.Schema({
         adminId: {
             type: String,
             required: true
+        },
+        isAdmin: {
+            type: Boolean,
+            default: true,
         }
     },
     {

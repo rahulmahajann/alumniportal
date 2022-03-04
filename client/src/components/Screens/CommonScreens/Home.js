@@ -5,6 +5,7 @@ import LowerHeader from '../../CommonComponents/Header/LowerHeader';
 import UpperHeader from '../../PreLoginComponents/Header/UpperHeader';
 import NormalScreenBody from '../../CommonComponents/Body/NormalScreenBody';
 import UpperHeaderLog from '../../PostLoginComponents/Admin/Header/UpperHeaderLog';
+import LowerHeaderAdmin from '../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
 
 function Home(){
     return(
@@ -12,7 +13,9 @@ function Home(){
             {
                 localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : <UpperHeader image = { college__logo } />
             }
-            <LowerHeader />
+            {
+                localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />
+            }
             <NormalScreenBody
                 Heading = {'Home'}
                 Content = {'bye'}
