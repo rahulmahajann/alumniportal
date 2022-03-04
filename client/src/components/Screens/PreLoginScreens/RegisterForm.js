@@ -4,7 +4,7 @@ import { faGoogle, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './RegisterForm.css';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
-import { newRegisterEmail, register } from '../../service/api';
+import { newRegisterEmail } from '../../service/api';
 
 const initialValue = {
     userEmail: ''
@@ -32,7 +32,8 @@ function RegisterForm(props){
         fontSize: '18px',
         display: 'flex',
         alignItems: 'center',
-        alignContent: 'flex-start'
+        alignContent: 'flex-start',
+        border: 'none',
     }
 
     const linkedin__Style = {
@@ -49,7 +50,8 @@ function RegisterForm(props){
         fontSize: '18px',
         display: 'flex',
         alignItems: 'center',
-        alignContent: 'flex-start'
+        alignContent: 'flex-start',
+        border: 'none'
     }
     
     const google__Style = {
@@ -81,7 +83,8 @@ function RegisterForm(props){
         height: '45px', 
         marginBottom: '20px',
         background: color2,
-        borderRadius: '5px'
+        borderRadius: '5px',
+        border: 'none'
     }
 
     const heading3 = {

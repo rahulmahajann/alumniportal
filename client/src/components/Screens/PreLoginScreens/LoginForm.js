@@ -37,7 +37,8 @@ function LoginForm(props){
         fontSize: '18px',
         display: 'flex',
         alignItems: 'center',
-        alignContent: 'flex-start'
+        alignContent: 'flex-start',
+        border: 'none'
     }
 
     const linkedin__Style = {
@@ -54,7 +55,8 @@ function LoginForm(props){
         fontSize: '18px',
         display: 'flex',
         alignItems: 'center',
-        alignContent: 'flex-start'
+        alignContent: 'flex-start',
+        border: 'none'
     }
     
     const google__Style = {
@@ -117,7 +119,8 @@ function LoginForm(props){
         height: '45px', 
         marginBottom: '20px',
         background: color2,
-        borderRadius: '5px'
+        borderRadius: '5px',
+        border: 'none'
     }
 
     const heading3 = {

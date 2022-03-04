@@ -48,7 +48,8 @@ function LoginAdminForm(props){
         height: '45px', 
         marginBottom: '20px',
         background: color2,
-        borderRadius: '5px'
+        borderRadius: '5px',
+        border: 'none'
     }
 
     const heading3 = {

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { color2 } from '../../../constants/colors';
+import './ContactUsForm.css';
 
 const initialValue = {
     userName: '',
@@ -63,6 +64,7 @@ function ContactUsForm(){
         marginBottom: '20px',
         background: color2,
         borderRadius: '5px',
+        border: 'none'
     }
 
     return(
