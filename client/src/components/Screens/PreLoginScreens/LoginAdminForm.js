@@ -111,7 +111,7 @@ function LoginAdminForm(props){
                         <input onChange = { (e) => handleChange(e) } style = {register__FormPassword} name = 'adminPassword' type = 'password' placeholder = 'password' /> 
                     </div>
                 </div>
-                <Link style = {link__Style} to = {'/'} >
+                <Link style = {link__Style} to = {'/forgotpassword'} >
                     Forgot Password?
                 </Link>
                 <button onClick = { (e) => saveUserLoginEmail(e) } style = {register__FormSubmitButton}>Submit</button>

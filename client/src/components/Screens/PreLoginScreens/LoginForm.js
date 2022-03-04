@@ -183,7 +183,7 @@ function LoginForm(props){
                     <label>Password</label>
                     </div>
                 </div>
-                <Link style = {link__Style} to = {'/'} >
+                <Link style = {link__Style} to = {'/forgotpassword'} >
                     Forgot Password?
                 </Link>
                 <button onClick = { (e) => saveUserLoginEmail(e) } style = {register__FormSubmitButton}>Submit</button>

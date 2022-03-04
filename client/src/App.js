@@ -15,6 +15,7 @@ import PendingMembers from "./components/Screens/PostLoginScreens/Admin/Members/
 import PendingMembersList from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembersList";
 import Login from "./components/Screens/PreLoginScreens/Login";
 import LoginAdmin from "./components/Screens/PreLoginScreens/LoginAdmin";
+import ForgotPassword from "./components/Screens/PreLoginScreens/Password/ForgotPassword";
 import Register from "./components/Screens/PreLoginScreens/Register";
 import RegisterAdmin from "./components/Screens/PreLoginScreens/RegisterAdmin";
 import UserRegDetails from "./components/Screens/PreLoginScreens/UserRegDetails/UserRegDetails";
@@ -42,6 +43,7 @@ function App() {
           <Route path = '/adminprofile' element = {<AdminProfile />} />
           <Route path = '/pendingmembers' element = {<PendingMembers />} />
           <Route path = '/approvedmembers' element = {<ApprovedMembers />} />
+          <Route path = '/forgotpassword' element = {<ForgotPassword /> } />
         </Routes>
       </BrowserRouter>
     </>
