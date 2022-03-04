@@ -67,10 +67,16 @@ const userAuthSchema = mongoose.Schema({
             type:Boolean,
             default:false,
         },
+        
         isAdmin: {
             type: Boolean,
             default: false,
+        },
+
+        userPassword: {
+            type: String,
         }
+
 
     },
 

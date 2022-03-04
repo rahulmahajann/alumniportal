@@ -144,7 +144,7 @@ const getApprovedMembers = async (req, res) => {
 const updatePendingMember = async (req, res) => {
     const userId = req.body.userId;
 
-    console.log(userId);
+    // console.log(userId);
 
     const userInfo = await userAuth.find({_id: userId});
 
@@ -152,7 +152,7 @@ const updatePendingMember = async (req, res) => {
         isApproved: true
     })
 
-    console.log(userInfo)
+    // console.log(userInfo)
 
     const transpoter = nodemailer.createTransport({
         service: 'gmail',
