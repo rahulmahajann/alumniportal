@@ -115,3 +115,23 @@ export const uniqueRollNumber = async (userEnrollmentNumber) => {
         console.log(err);
     }
 }
+
+export const sendOtp = async (userEmail) => {
+    try{
+        const response = await axios.post(`${URL}/sendOtp`,{userEmail});
+        return response.data; 
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+export const updatePassword = async (userDetails) => {
+    try{
+        const response = await axios.post(`${URL}/updatePassword`,userDetails);
+        return response.data;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
