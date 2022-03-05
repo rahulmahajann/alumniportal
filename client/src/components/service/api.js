@@ -116,12 +116,22 @@ export const uniqueRollNumber = async (userEnrollmentNumber) => {
     }
 }
 
-
+export const sendOtp = async (userEmail) => {
+    try{
+        const awazAii = await axios.post(`${URL}/sendotp`,{userEmail});
+        return awazAii.data; 
+    }
+    catch(err){
         console.log(err);
     }
 }
 
-
+export const updatePassword = async (userDetails) => {
+    try{
+        const awazAii = await axios.post(`${URL}/updatepassword`,userDetails);
+        return awazAii.data;
+    }
+    catch(err){
         console.log(err);
     }
 }
