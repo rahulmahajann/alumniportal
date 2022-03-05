@@ -115,3 +115,25 @@ export const uniqueRollNumber = async (userEnrollmentNumber) => {
         console.log(err);
     }
 }
+
+export const validateEmailNPasswordForReset = async (userLoginDetails) => {
+    try{
+        console.log('backend pe awaz gayi');
+        const awazAii = await axios.post(`${URL}/validateresetpassword`, userLoginDetails);
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const updateResetPassword = async (userNewPasswordDetails) => {
+    try{
+        console.log(userNewPasswordDetails);
+        const awazAii = await axios.post(`${URL}/updateresetpassword`, userNewPasswordDetails);
+        // console.log(awazAii);
+        return awazAii.data
+    }catch(err){
+        console.log(err);
+    }
+}

@@ -154,6 +154,20 @@ const updatePendingMember = async (req, res) => {
 
     // console.log(userInfo)
 
+    const alphabets = 'abcdefghijklmnopqrstuvwxyz';
+
+    let temporaryPassword = ''
+
+    for(var i = 0; i < 8; i++){
+        temporaryPassword += alphabets[Math.floor(Math.random()*26)];
+    }
+
+    const encryptedPassword = await bcrypt.hash(temporaryPassword, 16);
+
+    await userAuth.findByIdAndUpdate(userId, {
+        userPassword: encryptedPassword
+    })
+
     const transpoter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -168,7 +182,7 @@ const updatePendingMember = async (req, res) => {
         from: 'alumniadgitm@gmail.com',
         to: userInfo[0].userEmail,
         subject: 'Congratulation Registered Successfully',
-        text: 'registered succesfully'
+        text: `hey you are registered succesfully on alumni portal of ADGITM. This is your temporaryPassword ${temporaryPassword} please change it from the login screen.`
     }
 
     transpoter.sendMail(mailOptions);
@@ -184,4 +198,53 @@ const deletePendingMember = async (req, res) => {
 
 }
 
-module.exports = { newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber };
+const validateEmailNPasswordForReset = async (req, res) => {
+    
+    const userEmail = req.body.userEmail;
+    const userPassword = req.body.userPassword;
+
+    if(!userEmail || !userPassword){
+        return res.json('complete the fields')
+    }
+
+    const isUserEmail = await userAuth.findOne({userEmail});
+
+    if(isUserEmail){
+
+        const isValidPassword = await bcrypt.compare(userPassword, isUserEmail.userPassword);
+
+        if(isValidPassword){
+            return res.json('Validate')
+        }else{
+            return res.json('Either email or password is incorrect');
+        }       
+
+    }else{
+        return res.json('Either email or password is incorrect');
+    }
+
+    // console.log(isUserEmail);
+
+}
+
+const updateResetPassword = async (req, res) => {
+
+    // console.log(req.body);
+    const userEmail = req.body.userEmail;
+    const userPassword = req.body.userPassword;
+
+    const userInformation = await userAuth.findOne({userEmail});
+
+    console.log(userInformation);
+
+    const encryptedPassword = await bcrypt.hash(userPassword, 16);
+
+    await userAuth.findByIdAndUpdate(userInformation, {
+        userPassword: encryptedPassword
+    })
+
+    return res.json('password changed succesfully');
+
+}
+
+module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber };
