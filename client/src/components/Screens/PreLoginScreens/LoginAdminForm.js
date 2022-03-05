@@ -84,7 +84,7 @@ function LoginAdminForm(props){
     const saveUserLoginEmail = async (e) => {
         // console.log(adminLoginDetails);
         const apiInformation = await adminLogin(adminLoginDetails);
-        console.log(apiInformation.information.message);
+        // console.log(apiInformation.information.message);
         if(apiInformation.information.message === 'successfully logged in!'){
             // console.log(apiInformation.adminId);
             localStorage.setItem('IngmmDdooAin', apiInformation.information.adminUniqueId)
