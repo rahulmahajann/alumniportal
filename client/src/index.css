@@ -7,3 +7,6 @@
 /* to hide the x scrollbar */
 ::-webkit-scrollbar {display:none;}
 
+button{
+    cursor: progress;
+}

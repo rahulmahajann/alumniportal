@@ -183,6 +183,9 @@ function LoginForm(props){
                     <label>Password</label>
                     </div>
                 </div>
+                <Link style = {link__Style} to = {'/resetpassword'} >
+                    Reset Password?
+                </Link>
                 <Link style = {link__Style} to = {'/forgotpassword'} >
                     Forgot Password?
                 </Link>
