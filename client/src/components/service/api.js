@@ -118,8 +118,8 @@ export const uniqueRollNumber = async (userEnrollmentNumber) => {
 
 export const sendOtp = async (userEmail) => {
     try{
-        const response = await axios.post(`${URL}/sendOtp`,{userEmail});
-        return response.data; 
+        const awazAii = await axios.post(`${URL}/sendotp`,{userEmail});
+        return awazAii.data; 
     }
     catch(err){
         console.log(err);
@@ -128,8 +128,8 @@ export const sendOtp = async (userEmail) => {
 
 export const updatePassword = async (userDetails) => {
     try{
-        const response = await axios.post(`${URL}/updatePassword`,userDetails);
-        return response.data;
+        const awazAii = await axios.post(`${URL}/updatepassword`,userDetails);
+        return awazAii.data;
     }
     catch(err){
         console.log(err);

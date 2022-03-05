@@ -91,13 +91,13 @@ function ForgotPasswordForm(){
     const handleEmail = async(e) =>{
         e.preventDefault();
         console.log(userDetails.email);
-        const response=await sendOtp(userDetails.email);
-        if(response==="User not Found"){
-            toast.error(response);
+        const apiInformation=await sendOtp(userDetails.email);
+        if(apiInformation==="User not Found"){
+            toast.error(apiInformation);
         }
         else{
 
-        setOtp(response);
+        setOtp(apiInformation);
         toast.success("OTP has been sent to the registered email");
         setEmailChecked(true);
         }
@@ -118,16 +118,15 @@ function ForgotPasswordForm(){
     const handleNewPassword = async (e) => {
         e.preventDefault();
 
-        const response = await updatePassword({
+        const apiInformation = await updatePassword({
             userEmail:userDetails.email,
             userPassword:userDetails.newPassword
         });
 
-        if(response){
+        if(apiInformation){
+            navigate('/login');
             toast.success("Password Changed Successfully \tLogin with new password");
-            setTimeout(() => {
-                navigate('/login');
-            },1000);
+            
         }
         else{
             toast.error("Some internal error occured \t Try again after sometime");

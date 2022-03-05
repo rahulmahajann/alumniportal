@@ -12,7 +12,7 @@ router.put('/updatependingmember', updatePendingMember);
 router.post('/deletependingmember', deletePendingMember);
 router.post('/uniquemobile', uniqueMobile);
 router.post('/uniquerollnumber', uniqueRollNumber);
-router.post('/sendOtp',sendOtp);
-router.post('/updatePassword',updatePassword);
+router.post('/sendotp',sendOtp);
+router.post('/updatepassword',updatePassword);
 
 module.exports = router;
