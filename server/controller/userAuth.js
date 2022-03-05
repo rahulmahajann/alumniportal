@@ -247,4 +247,27 @@ const updateResetPassword = async (req, res) => {
 
 }
 
-module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber };
+const sendOtp = async (req,res) => {
+    const userEmail = req.body.userEmail;
+    const userFound = await  userAuth.findOne({userEmail});
+    if(userFound){
+        //sendOtp
+        const otp = 123456;
+        return res.status(200).json(otp);
+    }
+    else{
+         return res.status(200).json("User not Found");
+    }
+
+}
+
+const updatePassword = async(req,res) => {
+    const userPassword = await req.body.userPassword;
+    const userEmail = await req.body.userEmail;
+    const hashedPassword= await bcrypt.hash(userPassword,16);
+    const passwordChanged = await userAuth.findOneAndUpdate({userEmail:userEmail},{userPassword:hashedPassword});
+
+    console.log(passwordChanged);
+    return res.status(200).json(passwordChanged);
+}
+module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber, sendOtp, updatePassword };
