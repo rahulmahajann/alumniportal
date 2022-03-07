@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { deletePendingMember, getPendingMembers, updatePendingMember } from "../../../../service/api";
+import ContainerApproval from "./ReusableApproveUI/ContainerApproval";
 
 function PendingMembersList(){
     
@@ -29,24 +30,35 @@ function PendingMembersList(){
         console.log("delete",temp);
         setRenderSwitch(!renderSwitch);
     }
+
+    const mainComponent = {
+        display: 'flex',
+        flexDirection: 'column', 
+    }
     
+    const buttons__PendingMembersList = {
+        border: 'none'
+    }
+
+    const div__buttons = {
+        display: 'flex',
+        justifyContent: 'space-between'
+    }
+
     return(
-        <>
+        <div>
             {
                 pendingMembers && pendingMembers?.map((item, ind) => (
-                    <>
-                        <h1>{item.userEmail}</h1>
-                        <h1>{item.userName}</h1>
-                        <h1>{item.userMobile}</h1>
-                        <h1>{item.userDOB}</h1>
-                        <h1>{item.userCity}</h1>
-                        <button onClick = {(e) => approveMember(e, item._id)} >Approve</button>
-                        <button onClick = {(e) => deleteMember(e,item._id)} >Decline</button>
-                        <br />
-                    </>
+                    <div  style = {mainComponent} >
+                        <ContainerApproval userInfo = {item} />
+                        <div style = {div__buttons} >
+                            <button style = {buttons__PendingMembersList} onClick = {(e) => approveMember(e, item._id)} >Approve</button>
+                            <button style = {buttons__PendingMembersList} onClick = {(e) => deleteMember(e,item._id)} >Decline</button>
+                        </div>
+                    </div>
                 ))
             }
-        </>
+        </div>
     )   
 }
 
