@@ -105,24 +105,34 @@ const uniqueRollNumber = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    
     const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
+    console.log(userEmail, userPassword);
     if(!userEmail || !userPassword){
         return res.status(200).json('Data not complete');
     }
 
-    const isUserEmailExist = await userAuth.findOne({userEmail});
+    const isUserEmailExist = await userAuth.findOne({
+        userEmail
+    });
+
     if(isUserEmailExist){
-        const isValidPassword = await bcrypt.compare(userPassword, isUserEmailExist);
+        const isValidPassword = await bcrypt.compare(userPassword, isUserEmailExist.userPassword);
         if(isValidPassword){
-
+            return res.json({
+                message: 'successfully logged in!',
+                userUniqueId: isUserEmailExist._id,
+            })
         }else{
-
+            return res.json({
+                message: 'username or password is not valid'
+            })
         }
 
     }else{
-
+        return res.json({
+            message: 'username or password is not valid'
+        })
     }
 
 }

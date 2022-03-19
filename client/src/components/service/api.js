@@ -14,6 +14,17 @@ export const register = async (username) => {
     }
 }
 
+export const login = async (loginDetails) => {
+    try{
+        const awazAii = await axios.post(`${URL}/login`, loginDetails);
+        return{
+            information: awazAii.data
+        }
+    }catch(err){
+        console.log(err);
+    }
+}
+
 export const newRegisterEmail = async (username) => {
     try{
         const awazAii = await axios.post(`${URL}/newuser`, username);
