@@ -53,6 +53,7 @@ function NewsroomList(){
         width:'100%',
         objectFit:'content',
         height:'100%',
+        maxHeight:'500px'
     }
 
     const image_container = {
@@ -61,6 +62,7 @@ function NewsroomList(){
     }
 
     const content_style = {
+
 
     }
 
@@ -72,8 +74,9 @@ function NewsroomList(){
         <div>
             {
                 newsItems.map((news,ind)=>{
+                    {console.log(news)}
                     return(
-                    <div  onClick={(e)=>{showNews(e)}} key={ind} style={newsContainer}>                        
+                    <div  onClick={(e)=>{showNews(e)}} value={news._id} key={ind} style={newsContainer}>                        
                         <h1>{news.title}</h1>
                         <div style={image_container}>
                             <img style={image_style} src={news.img} alt='No image'></img>
