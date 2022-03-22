@@ -181,3 +181,13 @@ export const getNewsroomData = async () =>{
         console.log(err);
     }
 }
+
+export const getNewsById = async (id) => {
+    try{
+        const awazAii = await axios.post(`${URL}/getNewsById`, {id});
+        // console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}

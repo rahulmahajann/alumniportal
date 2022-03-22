@@ -7,6 +7,7 @@ import Events from "./components/Screens/CommonScreens/Events/Event";
 import Gallery from "./components/Screens/CommonScreens/Gallery/Gallery";
 import Home from "./components/Screens/CommonScreens/Home";
 import Members from "./components/Screens/CommonScreens/Members/Members";
+import DetailedNews from "./components/Screens/CommonScreens/Newsroom/DetailedNews";
 import NewsRoom from "./components/Screens/CommonScreens/Newsroom/Newsroom";
 import AdminHome from "./components/Screens/PostLoginScreens/Admin/AdminHome";
 import AdminProfile from "./components/Screens/PostLoginScreens/Admin/AdminProfile";
@@ -48,6 +49,7 @@ function App() {
           <Route path = '/forgotpassword' element = {<ForgotPassword /> } />
           <Route path = '/resetpassword' element = {<ResetPassword /> } />
           <Route path = '/addnewsroom' element = {<AddNews />} />
+          <Route path = '/detailednews/:id' element = {< DetailedNews />} />
         </Routes>
       </BrowserRouter>
     </>
