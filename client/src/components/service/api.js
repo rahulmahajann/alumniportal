@@ -168,3 +168,16 @@ export const updateResetPassword = async (userNewPasswordDetails) => {
         console.log(err);
     }
 }
+
+
+export const getNewsroomData = async () =>{
+    try{
+        const awazAii = await axios.get(`${URL}/getNews`);
+
+        // console.log(awazAii);
+        return awazAii.data;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
