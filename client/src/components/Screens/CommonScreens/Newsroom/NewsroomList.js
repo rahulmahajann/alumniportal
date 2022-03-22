@@ -34,6 +34,7 @@ function NewsroomList(){
         width:'100%',
         objectFit:'content',
         height:'100%',
+        maxHeight:'500px'
     }
 
     const image_container = {
@@ -42,6 +43,7 @@ function NewsroomList(){
     }
 
     const content_style = {
+
 
     }
 
@@ -53,6 +55,7 @@ function NewsroomList(){
         <div>
             {
                 newsItems.map((news,ind)=>{
+                    {console.log(news)}
                     return(
                         <Link to = {`/detailednews/${news._id}`} key={ind} style={newsContainer}>                        
                             <h1>{news.title}</h1>
