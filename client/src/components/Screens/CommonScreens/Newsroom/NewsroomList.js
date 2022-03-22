@@ -6,36 +6,15 @@ import { getNewsroomData } from "../../../service/api";
 
 function NewsroomList(){
 
-    const [newsItems,setNewsItems]=useState([
-        {
-            title:"TEST TITLE 1",
-            image:'https://vaave.s3.amazonaws.com/content/151600328_1641028376_NewYear2022_thumb.jpg',
-            content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae sagittis magna. Quisque a nulla sem. Vestibulum hendrerit auctor risus vitae dictum. Maecenas sed ullamcorper massa. Vestibulum consequat felis mi, vitae porta eros placerat a. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse lobortis id libero ac ultrices. Aliquam pharetra facilisis efficitur. Nulla fringilla pulvinar sapien, a bibendum magna mollis ac. Donec ac semper libero. Nullam luctus sit amet nulla id ultrices.Sed vitae elementum quam.Nullam feugiat tortor nisl, vel aliquet ante bibendum sit amet. Duis dignissim aliquet vestibulum. Vivamus quis justo eget ligula placerat pretium nec in urna. Aenean feugiat est sed tortor interdum, et consequat nibh vulputate. Ut laoreet vehicula elit, sed eleifend urna eleifend ac. Etiam nibh massa, feugiat ut leo et, ultricies aliquet turpis. Morbi sed pulvinar purus.",
-            postedOn:new Date(),
-        },
-        {
-            title:"TEST TITLE 2",
-            image:'https://vaave.s3.amazonaws.com/content/151600328_1641028376_NewYear2022_thumb.jpg',
-            content:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae sagittis magna. Quisque a nulla sem. Vestibulum hendrerit auctor risus vitae dictum. Maecenas sed ullamcorper massa. Vestibulum consequat felis mi, vitae porta eros placerat a. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse lobortis id libero ac ultrices. Aliquam pharetra facilisis efficitur. Nulla fringilla pulvinar sapien, a bibendum magna mollis ac. Donec ac semper libero. Nullam luctus sit amet nulla id ultrices.Sed vitae elementum quam.Nullam feugiat tortor nisl, vel aliquet ante bibendum sit amet. Duis dignissim aliquet vestibulum. Vivamus quis justo eget ligula placerat pretium nec in urna. Aenean feugiat est sed tortor interdum, et consequat nibh vulputate. Ut laoreet vehicula elit, sed eleifend urna eleifend ac. Etiam nibh massa, feugiat ut leo et, ultricies aliquet turpis. Morbi sed pulvinar purus.",
-            postedOn:new Date(),
-
-        }
-    ]);
+    const [newsItems,setNewsItems]=useState([]);
 
     useEffect(async()=>{
-           
-        //api call to newsroom
         const newsroomData = await getNewsroomData();
-
-        // console.log(newsroomData);
         setNewsItems(newsroomData);
-
-
     },[]);
 
-    const showNews = (e) => {
-        e.preventDefault();
-        console.log(e.target);
+    const showNews = (e, news) => {
+        console.log(news);
     }
 
     const newsContainer = {
@@ -73,15 +52,14 @@ function NewsroomList(){
             {
                 newsItems.map((news,ind)=>{
                     return(
-                    <div  onClick={(e)=>{showNews(e)}} key={ind} style={newsContainer}>                        
-                        <h1>{news.title}</h1>
-                        <div style={image_container}>
-                            <img style={image_style} src={news.img} alt='No image'></img>
+                        <div onClick = {(e) => showNews(e,news._id)} key={ind} style={newsContainer}>                        
+                            <h1>{news.title}</h1>
+                            <div style={image_container}>
+                                <img style={image_style} src={news.img} alt='No image'></img>
+                            </div>
+                            <div style = {date_style}>Posted On: {(new Date(news.createdAt)).toLocaleDateString()}</div>
+                            <div style = {content_style}>{news.content.length>220?news.content.substring(0,220)+` .....`:news.content}</div>
                         </div>
-                        <div style = {date_style}>Posted On: {(new Date(news.createdAt)).toLocaleDateString()}</div>
-                        <div style = {content_style}>{news.content.length>220?news.content.substring(0,220)+` .....`:news.content}</div>
-                        
-                    </div>
                     )
 
                 })
