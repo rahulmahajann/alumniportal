@@ -47,6 +47,10 @@ function LowerHeaderAdmin(){
             
             <div id = 'newsRoom' style = { items__lowerHeader } >
                 <Link style = {itemsLink__lowerHeader} to = {'/newsroom'} >NEWSROOM</Link>
+                <div className = 'hoverContent'>
+                    <Link className = 'hoverContentLink' to = {'/newsroom'} >View NewsRoom</Link>
+                    <Link className = 'hoverContentLink' to = {'/addnewsroom'} >Add News</Link>
+                </div>
             </div>
 
             <div id = 'members' style = { items__lowerHeader } >

@@ -13,6 +13,7 @@ import AdminProfile from "./components/Screens/PostLoginScreens/Admin/AdminProfi
 import ApprovedMembers from "./components/Screens/PostLoginScreens/Admin/Members/ApprovedMembers";
 import PendingMembers from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembers";
 import PendingMembersList from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembersList";
+import AddNews from "./components/Screens/PostLoginScreens/Admin/Newsroom/AddNews";
 import Login from "./components/Screens/PreLoginScreens/Login";
 import LoginAdmin from "./components/Screens/PreLoginScreens/LoginAdmin";
 import ForgotPassword from "./components/Screens/PreLoginScreens/Password/ForgotPassword";
@@ -46,6 +47,7 @@ function App() {
           <Route path = '/approvedmembers' element = {<ApprovedMembers />} />
           <Route path = '/forgotpassword' element = {<ForgotPassword /> } />
           <Route path = '/resetpassword' element = {<ResetPassword /> } />
+          <Route path = '/addnewsroom' element = {<AddNews />} />
         </Routes>
       </BrowserRouter>
     </>
