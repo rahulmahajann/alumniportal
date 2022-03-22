@@ -11,6 +11,7 @@ import DetailedNews from "./components/Screens/CommonScreens/Newsroom/DetailedNe
 import NewsRoom from "./components/Screens/CommonScreens/Newsroom/Newsroom";
 import AdminHome from "./components/Screens/PostLoginScreens/Admin/AdminHome";
 import AdminProfile from "./components/Screens/PostLoginScreens/Admin/AdminProfile";
+import ContactUsAdmin from "./components/Screens/PostLoginScreens/Admin/ContactUs/ContactUsAdmin";
 import ApprovedMembers from "./components/Screens/PostLoginScreens/Admin/Members/ApprovedMembers";
 import PendingMembers from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembers";
 import PendingMembersList from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembersList";
@@ -44,6 +45,7 @@ function App() {
           <Route path = '/userregdetail' element = {<UserRegDetails />} />
           <Route path = '/admin' element = {<AdminHome />} />
           <Route path = '/adminprofile' element = {<AdminProfile />} />
+          <Route path = '/contactusadmin' element = {<ContactUsAdmin />} />
           <Route path = '/pendingmembers' element = {<PendingMembers />} />
           <Route path = '/approvedmembers' element = {<ApprovedMembers />} />
           <Route path = '/forgotpassword' element = {<ForgotPassword /> } />

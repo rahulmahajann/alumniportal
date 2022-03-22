@@ -81,7 +81,7 @@ function LowerHeaderAdmin(){
             </div>
             
             <div id = 'contactUs' style = { items__lowerHeader } >
-                <Link style = {itemsLink__lowerHeader} to = {'/contactus'} >CONTACT US</Link>
+                <Link style = {itemsLink__lowerHeader} to = {'/contactusadmin'} >CONTACT US</Link>
             </div>
 
             <div id = 'alumniAssist' style = { items__lowerHeader } >

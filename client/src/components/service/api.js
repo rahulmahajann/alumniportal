@@ -191,3 +191,21 @@ export const getNewsById = async (id) => {
         console.log(err);
     }
 }
+
+export const getContactUsFormData = async () => {
+    try{
+        const awazAii = await axios.get(`${URL}/getContactUsData`);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
+
+export const saveContactUsFormData = async (formData) => {
+    try{
+        const awazAii = await axios.post(`${URL}/saveContactUsData`, formData);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+}
