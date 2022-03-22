@@ -2,3 +2,16 @@ client/node_modules
 client/package-lock.json
 server/node_modules
 server/package-lock.json
+
+
+# maindiv -> flexRow
+
+
+# flex column
+# salutation + name
+# email
+# M/F/O     DOB
+# City
+# COURSE        BATCH
+# RllNumber
+# MobileNumber

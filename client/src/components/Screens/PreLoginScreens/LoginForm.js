@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
+import { login } from '../../service/api';
 import './LoginForm.css';
 
 const initialValue = {
@@ -96,8 +97,6 @@ function LoginForm(props){
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
-        // marginTop: '5px',
-        // marginBottom: '20px',
         justifyContent: 'center',
     }
 
@@ -134,17 +133,23 @@ function LoginForm(props){
         color: 'inherit'
     }
 
-    const [userRegisterationData, setUserRegisterationData] = useState(initialValue);
+    const [userLoginData, setUserLoginData] = useState(initialValue);
         
     const handleChange = (e) => {
-        setUserRegisterationData({
-            ...userRegisterationData,
+        setUserLoginData({
+            ...userLoginData,
             [e.target.name]: e.target.value
         })
     }
 
-    const saveUserLoginEmail = (e) => {
-        console.log(userRegisterationData);
+    const saveUserLoginEmail = async (e) => {
+        const apiInformation = await login(userLoginData);
+        if(apiInformation.information.message == 'successfully logged in!'){
+            console.log(apiInformation.information.message);
+        }else{
+            console.log(apiInformation.information.message);
+        }
+
     }
 
     const heading5 = {

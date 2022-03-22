@@ -105,24 +105,34 @@ const uniqueRollNumber = async (req, res) => {
 }
 
 const login = async (req, res) => {
-    
     const userEmail = req.body.userEmail;
     const userPassword = req.body.userPassword;
+    console.log(userEmail, userPassword);
     if(!userEmail || !userPassword){
         return res.status(200).json('Data not complete');
     }
 
-    const isUserEmailExist = await userAuth.findOne({userEmail});
+    const isUserEmailExist = await userAuth.findOne({
+        userEmail
+    });
+
     if(isUserEmailExist){
-        const isValidPassword = await bcrypt.compare(userPassword, isUserEmailExist);
+        const isValidPassword = await bcrypt.compare(userPassword, isUserEmailExist.userPassword);
         if(isValidPassword){
-
+            return res.json({
+                message: 'successfully logged in!',
+                userUniqueId: isUserEmailExist._id,
+            })
         }else{
-
+            return res.json({
+                message: 'username or password is not valid'
+            })
         }
 
     }else{
-
+        return res.json({
+            message: 'username or password is not valid'
+        })
     }
 
 }
@@ -248,12 +258,45 @@ const updateResetPassword = async (req, res) => {
 }
 
 const sendOtp = async (req,res) => {
+    
     const userEmail = req.body.userEmail;
     const userFound = await  userAuth.findOne({userEmail});
+    
+    
     if(userFound){
         //sendOtp
-        const otp = 123456;
-        return res.status(200).json(otp);
+
+        const digits = '0123456789';
+
+        let tempOtp = '';
+
+        for( var i = 0; i < 6; i++){
+            tempOtp += digits[Math.floor(Math.random()*10)];
+        }
+
+        const otp = await bcrypt.hash(tempOtp, 16);
+
+        const transpoter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'alumniadgitm@gmail.com',
+                pass: 'kiazrbylovqfzori'
+            }
+        })
+
+        const mailOptions = {
+            from: 'alumniadgitm@gmail.com',
+            to: userFound.userEmail,
+            subject: 'Your One Time Password For Change of Password',
+            text: `Don't share the OTP: ${tempOtp} with anyone`
+        }
+
+        transpoter.sendMail(mailOptions);
+
+        return res.status(200).json({
+            message: 'mail sent successfully',
+            otp
+        });
     }
     else{
          return res.status(200).json("User not Found");
