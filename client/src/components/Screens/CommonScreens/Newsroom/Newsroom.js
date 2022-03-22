@@ -1,5 +1,5 @@
 // libraries import
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // files import
 import UpperHeader from '../../../PreLoginComponents/Header/UpperHeader';
@@ -9,9 +9,11 @@ import NormalScreenBody from '../../../CommonComponents/Body/NormalScreenBody';
 import Footer from '../../../CommonComponents/Footer/Footer';
 import UpperHeaderLog from '../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
 import LowerHeaderAdmin from '../../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
+import NewsroomList from './NewsroomList';
 
 
 function NewsRoom(){
+
     return(
         <>
             {
@@ -22,6 +24,8 @@ function NewsRoom(){
             }
             <NormalScreenBody
                 Heading = {'Newsroom'}
+                Content={<NewsroomList />}
+                
             />
             <Footer />
         </>
