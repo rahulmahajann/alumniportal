@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { color2 } from '../../../../constants/colors';
 import { getContactUsFormData } from '../../../../service/api';
 
 function ContactUsAdminItems(){
@@ -7,6 +8,7 @@ function ContactUsAdminItems(){
 
     useEffect(async () => {
         const apiInformation = await getContactUsFormData();
+        console.log(apiInformation);
         setContactUsData([
             ...apiInformation.contactUsFormData
         ])
@@ -14,9 +16,34 @@ function ContactUsAdminItems(){
 
     console.log(contactUsData);
 
+    const contactUsAdminItemContainer = {
+        display:'flex',
+        flexDirection:'column',
+        width:'100%',
+        alignItems:'left',
+        justifyContent:'center',
+        margin:'10px 2px',
+        borderBottom:`1px solid ${color2}`,
+        textDecoration: 'none',
+        color: 'inherit'
+    }
+
     return(
-        <h1>hello</h1>
-        
+        <>
+            {
+                contactUsData.map((item, ind) => {
+                    return(
+                        <div style = {contactUsAdminItemContainer}>
+                            <p>Name: {item.userName}</p>
+                            <p>Email: {item.userEmail}</p>
+                            <p>PhoneNumber: {item.userPhoneNo}</p>
+                            <p>Subject:{item.subject}</p>
+                            <p>Message: {item.message}</p>
+                        </div>
+                    )
+                })
+            }
+        </>
     )
 }
 
