@@ -182,6 +182,17 @@ export const getNewsroomData = async () =>{
     }
 }
 
+export const addNewsroomData = async (newsItem) => {
+    try{
+        const awazAii = await axios.post(`${URL}/addNews`,{newsItem})
+
+        return awazAii;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
 export const getNewsById = async (id) => {
     try{
         const awazAii = await axios.post(`${URL}/getNewsById`, {id});

@@ -5,11 +5,12 @@ import './AddNewsForm.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { color2 } from '../../../../constants/colors';
+import { addNewsroomData } from '../../../../service/api';
 
 const initialValue = {
-    newsTitle: '',
-    newsImage: '',
-    newsContent:''
+    title: '',
+    img: '',
+    content:''
 
 }
 
@@ -54,7 +55,7 @@ function AddNewsForm(){
     }
 
     const heading3 = {
-        fontSize: '15px',
+        fontSize: '18px',
         marginTop: '10px',
         marginLeft: '27%'
     }
@@ -84,6 +85,7 @@ function AddNewsForm(){
 
     const submitHandler = async(e) => {
         e.preventDefault();
+        toast.loading("Creating Post...");
 
         const data = new FormData();
         data.append("file", img);
@@ -99,15 +101,26 @@ function AddNewsForm(){
         console.log(imgURL.url);
         setNewsItemDetails({
             ...newsItemDetails,
-            newsImage:imgURL.url
-        })
+            img:imgURL.url
+        });
 
-        if(!newsItemDetails.newsContent||!newsItemDetails.newsImage||!newsItemDetails.newsContent){
+        if(!newsItemDetails.content||!newsItemDetails.img||!newsItemDetails.title){
+            toast.dismiss()
             toast.error("Incomplete data");
         }
         else{
-            //send data to api 
-            toast.success("news item created");
+            
+            const apiInformation = await addNewsroomData(newsItemDetails);
+            if(apiInformation.data == "News item created"){
+                toast.dismiss();
+
+                navigate('/newsroom');
+                toast.success(apiInformation.data);
+            }
+            else{
+                toast.dismiss();
+                toast.error("Some error occured");
+            }
         }
     }
 
@@ -117,20 +130,20 @@ function AddNewsForm(){
 
     return(
         <div>
-            <h4 style = { heading3 } >Add News Item</h4>
+            <h4 style = { heading3 } >Fill the form to add News Item</h4>
             <div style = {register__Form} >
                 <div style = {login__Input}>
                     <div className = 'group' >
                         <label>Title</label>
-                        <input onChange = { (e) => handleChange(e) } style = {news__FormTitle} name = 'newsTitle' type = 'text' placeholder = 'Title' />
+                        <input onChange = { (e) => handleChange(e) } style = {news__FormTitle} name = 'title' type = 'text' placeholder = 'Title' />
                     </div>
                     <div className='group'>
                         <label>Image</label>
-                        <input style={news__FormTitle} type="file" name="newsImage" onChange={(e) => setImg(e.target.files[0])} />  
+                        <input style={news__FormTitle} type="file" name="img" onChange={(e) => setImg(e.target.files[0])} />  
                     </div>
                     <div className = 'group' >
                         <label>Content</label>
-                        <textarea onChange = { (e) => handleChange(e) } style = {news__FormContent} name = 'newsContent' type = 'textarea' placeholder = 'Content' /> 
+                        <textarea onChange = { (e) => handleChange(e) } style = {news__FormContent} name = 'content' type = 'textarea' placeholder = 'Content' /> 
                     </div>
                     
                 </div>

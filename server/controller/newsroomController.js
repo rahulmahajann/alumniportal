@@ -1,7 +1,7 @@
 const newsItem = require('../model/newsroom');
 
 const addNewsItem = async(req,res) => {
-    const {title,img,content} = req.body;
+    const {title,img,content} = req.body.newsItem;
     if(!title||!img||!content){
         res.json("Data not Complete");
         return false;
