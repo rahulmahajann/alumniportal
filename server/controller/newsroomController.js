@@ -1,15 +1,7 @@
 const newsItem = require('../model/newsroom');
 
 const addNewsItem = async(req,res) => {
-
-    // const title = req.body.title;
-    // const img = req.body.img;
-    // const content = req.body.content;
-
     const {title,img,content} = req.body;
-
-    // console.log(title,img,content);
-
     if(!title||!img||!content){
         res.json("Data not Complete");
         return false;
@@ -43,5 +35,14 @@ const getNewsItems = async(req,res) =>{
     return true;
 }
 
+const getNewsById = async (req, res) => {
+    const {id} = req.body;
 
-module.exports = {addNewsItem, getNewsItems};
+    const newsDetail = await newsItem.findOne({
+        _id: id
+    })
+
+    return res.json(newsDetail)
+}
+
+module.exports = {addNewsItem, getNewsItems, getNewsById};

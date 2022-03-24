@@ -7,9 +7,11 @@ import Events from "./components/Screens/CommonScreens/Events/Event";
 import Gallery from "./components/Screens/CommonScreens/Gallery/Gallery";
 import Home from "./components/Screens/CommonScreens/Home";
 import Members from "./components/Screens/CommonScreens/Members/Members";
+import DetailedNews from "./components/Screens/CommonScreens/Newsroom/DetailedNews";
 import NewsRoom from "./components/Screens/CommonScreens/Newsroom/Newsroom";
 import AdminHome from "./components/Screens/PostLoginScreens/Admin/AdminHome";
 import AdminProfile from "./components/Screens/PostLoginScreens/Admin/AdminProfile";
+import ContactUsAdmin from "./components/Screens/PostLoginScreens/Admin/ContactUs/ContactUsAdmin";
 import ApprovedMembers from "./components/Screens/PostLoginScreens/Admin/Members/ApprovedMembers";
 import PendingMembers from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembers";
 import PendingMembersList from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembersList";
@@ -43,11 +45,13 @@ function App() {
           <Route path = '/userregdetail' element = {<UserRegDetails />} />
           <Route path = '/admin' element = {<AdminHome />} />
           <Route path = '/adminprofile' element = {<AdminProfile />} />
+          <Route path = '/contactusadmin' element = {<ContactUsAdmin />} />
           <Route path = '/pendingmembers' element = {<PendingMembers />} />
           <Route path = '/approvedmembers' element = {<ApprovedMembers />} />
           <Route path = '/forgotpassword' element = {<ForgotPassword /> } />
           <Route path = '/resetpassword' element = {<ResetPassword /> } />
           <Route path = '/addnewsroom' element = {<AddNews />} />
+          <Route path = '/detailednews/:id' element = {< DetailedNews />} />
         </Routes>
       </BrowserRouter>
     </>
