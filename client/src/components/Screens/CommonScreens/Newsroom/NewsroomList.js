@@ -8,14 +8,32 @@ import { getNewsroomData } from "../../../service/api";
 function NewsroomList(){
 
     const [newsItems,setNewsItems]=useState([]);
+    const [pageNumber,setPageNumber]=useState(0);
+    const [loadMoreEnable,setLoadMoreEnable]=useState(true);
 
     useEffect(async()=>{
-        const newsroomData = await getNewsroomData();
-        setNewsItems(newsroomData);
-    },[]);
+        const newsroomData = await getNewsroomData(pageNumber);
+        
+        // console.log(newsroomData);
+        if(newsroomData.length<5){
+            setLoadMoreEnable(false);
+        }
+
+        setNewsItems(newsItems.concat(newsroomData));
+        // console.log(newsItems);
+        
+    },[pageNumber]);
 
     const showNews = (e, news) => {
         console.log(news);
+    }
+
+    const loadMoreNews = async (e) => {
+        e.preventDefault();
+        setPageNumber(pageNumber+1);
+        // setLoadMoreEnable(false);
+        console.log(pageNumber);
+        // const moreNewsRoomData = await getNewsroomData(pageNumber);
     }
 
     const newsContainer = {
@@ -55,7 +73,7 @@ function NewsroomList(){
         <div>
             {
                 newsItems.map((news,ind)=>{
-                    {console.log(news)}
+                    // {console.log(news)}
                     return(
                         <Link to = {`/detailednews/${news._id}`} key={ind} style={newsContainer}>                        
                             <h1>{news.title}</h1>
@@ -69,6 +87,7 @@ function NewsroomList(){
 
                 })
             }
+            <button onClick={(e) => loadMoreNews(e) } disabled={!loadMoreEnable}>Load More</button>
         </div>
     )
 }

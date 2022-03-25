@@ -23,7 +23,10 @@ const addNewsItem = async(req,res) => {
 
 const getNewsItems = async(req,res) =>{
 
-    const newsItems = await newsItem.find();
+    const {pagenumber}=req.headers;
+    // console.log(pagenumber);
+
+    const newsItems = await newsItem.find().skip(pagenumber*5).limit(5);
 
     if(!newsItems){
         res.json("An error occured while getting data");
