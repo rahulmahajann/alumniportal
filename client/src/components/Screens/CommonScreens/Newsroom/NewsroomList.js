@@ -69,6 +69,17 @@ function NewsroomList(){
         fontSize:'25px'
     }
 
+    const loadMoreStyle = {
+        height: '45px', 
+        marginBottom: '20px',
+        marginLeft:'25%',
+        width:'50%',
+        background: color2,
+        borderRadius: '5px',
+        border: 'none',
+        fontSize:'20px',
+    }
+
     return(
         <div>
             {
@@ -87,7 +98,7 @@ function NewsroomList(){
 
                 })
             }
-            <button onClick={(e) => loadMoreNews(e) } disabled={!loadMoreEnable}>Load More</button>
+            <button style={loadMoreStyle} onClick={(e) => loadMoreNews(e) } disabled={!loadMoreEnable}>Load More News</button>
         </div>
     )
 }
