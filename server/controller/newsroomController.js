@@ -24,9 +24,11 @@ const addNewsItem = async(req,res) => {
 const getNewsItems = async(req,res) =>{
 
     const {pagenumber}=req.headers;
+    console.log("🚀 ~ file: newsroomController.js ~ line 27 ~ getNewsItems ~ pagenumber", typeof pagenumber)
     // console.log(pagenumber);
-
-    const newsItems = await newsItem.find().skip(pagenumber*5).limit(5);
+    const totalNewsItem = await newsItem.find();
+    const totalNewsCount = totalNewsItem.length;
+    const newsItems = await newsItem.find().sort({createdAt: -1}).skip(parseInt(pagenumber)*5).limit(5);
 
     if(!newsItems){
         res.json("An error occured while getting data");
@@ -34,8 +36,13 @@ const getNewsItems = async(req,res) =>{
     }
 
     // console.log(newsItems)
-    res.json(newsItems);
-    return true;
+    const resultObj = {
+        totalNewsCount: totalNewsCount,
+        data: newsItems,
+        remainingNewsCount: totalNewsCount - ((parseInt(pagenumber) + 1) * 5) 
+    }
+    
+    return res.send(resultObj);
 }
 
 const getNewsById = async (req, res) => {

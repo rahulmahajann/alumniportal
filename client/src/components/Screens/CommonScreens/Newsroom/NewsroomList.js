@@ -13,13 +13,13 @@ function NewsroomList(){
 
     useEffect(async()=>{
         const newsroomData = await getNewsroomData(pageNumber);
-        
+        console.log("🚀 ~ file: NewsroomList.js ~ line 16 ~ useEffect ~ newsroomData", newsroomData)
         // console.log(newsroomData);
-        if(newsroomData.length<5){
+        if(newsroomData.remainingNewsCount <= 0){
             setLoadMoreEnable(false);
         }
 
-        setNewsItems(newsItems.concat(newsroomData));
+        setNewsItems(newsItems.concat(newsroomData.data));
         // console.log(newsItems);
         
     },[pageNumber]);
