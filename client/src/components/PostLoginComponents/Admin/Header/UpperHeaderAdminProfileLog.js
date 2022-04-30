@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
-function UpperHeaderLog(props) {
+function UpperHeaderAdminProfileLog(props) {
 
     const complete__upperHeader ={
         display: 'flex',
@@ -75,7 +75,7 @@ function UpperHeaderLog(props) {
             <div style = { linkDiv__headerUpper } >
                 <Link style = { link__linkDiv } to = {'/adminprofile'} >{headerEmail}</Link>   
                 {/* <Link to = {'/'} onClick = {logoutFunction} >Logout</Link> */}
-                {/* <button onClick = { logoutFunction } >LogOut</button> */}
+                <button onClick = { logoutFunction } >LogOut</button>
             </div> 
 
 
@@ -83,4 +83,4 @@ function UpperHeaderLog(props) {
     )
 }
 
-export default UpperHeaderLog;
+export default UpperHeaderAdminProfileLog;

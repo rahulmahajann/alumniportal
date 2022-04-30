@@ -5,7 +5,7 @@ import ContainerApproval from "./ReusableApproveUI/ContainerApproval";
 function PendingMembersList(){
     
     const [pendingMembers, setPendingMembers] = useState('');
-    const [renderSwitch,setRenderSwitch]=useState(false);
+    const [renderSwitch,setRenderSwitch] = useState(false);
 
 
     useEffect(async () => {
@@ -19,6 +19,7 @@ function PendingMembersList(){
 
     const approveMember = async (e, userId) => {
         e.preventDefault();
+        console.log('approve button pe click hua!');
         const temp = await updatePendingMember(userId);
         console.log("valid");
         setRenderSwitch(!renderSwitch);
