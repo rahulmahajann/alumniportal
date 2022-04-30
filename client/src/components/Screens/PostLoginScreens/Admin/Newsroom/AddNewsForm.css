@@ -1,0 +1,43 @@
+.group{
+    position:relative;
+  }
+  
+.group>label{
+    padding:0 0.2em;
+    position:absolute;
+    top:-0.1em;
+    left:1em;
+    font-size: 15px;
+    color: #64BA8A;
+    background-color:rgb(255, 255, 255);
+}
+
+.group>input{
+    padding:0.8em;
+    border-radius: 0.5em;
+    border: 2px solid lightblue;
+    outline:none;
+}
+
+.group>textarea{
+    padding:0.8em;
+    border-radius: 0.5em;
+    border: 2px solid lightblue;
+    outline:none;
+}
+.group>select{
+    padding:0.8em;
+    border-radius: 0.5em;
+    border: 2px solid lightblue;
+    outline:none;
+}
+
+textarea{
+    resize: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

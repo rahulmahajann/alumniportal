@@ -170,12 +170,23 @@ export const updateResetPassword = async (userNewPasswordDetails) => {
 }
 
 
-export const getNewsroomData = async () =>{
+export const getNewsroomData = async (pageNumber) =>{
     try{
-        const awazAii = await axios.get(`${URL}/getNews`);
+        const awazAii = await axios.get(`${URL}/getNews`,{headers:{'pageNumber':pageNumber}});
 
         // console.log(awazAii);
         return awazAii.data;
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+export const addNewsroomData = async (newsItem) => {
+    try{
+        const awazAii = await axios.post(`${URL}/addNews`,{newsItem})
+
+        return awazAii;
     }
     catch(err){
         console.log(err);

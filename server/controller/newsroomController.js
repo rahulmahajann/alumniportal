@@ -1,7 +1,7 @@
 const newsItem = require('../model/newsroom');
 
 const addNewsItem = async(req,res) => {
-    const {title,img,content} = req.body;
+    const {title,img,content} = req.body.newsItem;
     if(!title||!img||!content){
         res.json("Data not Complete");
         return false;
@@ -23,7 +23,10 @@ const addNewsItem = async(req,res) => {
 
 const getNewsItems = async(req,res) =>{
 
-    const newsItems = await newsItem.find();
+    const {pagenumber}=req.headers;
+    // console.log(pagenumber);
+
+    const newsItems = await newsItem.find().skip(pagenumber*5).limit(5);
 
     if(!newsItems){
         res.json("An error occured while getting data");
