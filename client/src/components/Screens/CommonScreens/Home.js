@@ -19,7 +19,7 @@ function Home(){
             }
             <NormalScreenBody
                 Heading = {'Home'}
-                Content = {'bye'}
+                Content = {'this is home page read along to know more'}
             />
             <Footer />
         </>
