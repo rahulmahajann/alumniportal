@@ -10,6 +10,7 @@ import Footer from '../../../CommonComponents/Footer/Footer';
 import UpperHeaderLog from '../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
 import LowerHeaderAdmin from '../../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
 import NewsroomList from './NewsroomList';
+import UpperHeaderUserLog from '../../../PostLoginComponents/User/Header/UpperHeaderLog';
 
 
 function NewsRoom(){
@@ -17,7 +18,7 @@ function NewsRoom(){
     return(
         <>
             {
-                localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : <UpperHeader image = { college__logo } />
+                localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : localStorage.getItem('userEmail') ? <UpperHeaderUserLog image = {college__logo} /> : <UpperHeader image = { college__logo } />
             }
             {
                 localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />

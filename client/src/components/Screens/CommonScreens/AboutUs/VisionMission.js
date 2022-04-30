@@ -10,12 +10,13 @@ import { visionNmission } from '../../../constants/strings';
 import Footer from '../../../CommonComponents/Footer/Footer';
 import UpperHeaderLog from '../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
 import LowerHeaderAdmin from '../../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
+import UpperHeaderUserLog from '../../../PostLoginComponents/User/Header/UpperHeaderLog';
 
 function VissionMission(){
     return(
         <>
             {
-                localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : <UpperHeader image = { college__logo } />
+                localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : localStorage.getItem('userEmail') ? <UpperHeaderUserLog image = {college__logo} /> : <UpperHeader image = { college__logo } />
             }
             {
                 localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />

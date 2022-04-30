@@ -1,7 +1,7 @@
 import { faGoogle, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
 import { login } from '../../service/api';
 import './LoginForm.css';
@@ -134,6 +134,7 @@ function LoginForm(props){
     }
 
     const [userLoginData, setUserLoginData] = useState(initialValue);
+    const navigate = useNavigate();
         
     const handleChange = (e) => {
         setUserLoginData({
@@ -146,6 +147,8 @@ function LoginForm(props){
         const apiInformation = await login(userLoginData);
         if(apiInformation.information.message == 'successfully logged in!'){
             console.log(apiInformation.information.message);
+            navigate('/user');
+            localStorage.setItem('userEmail', userLoginData.userEmail)
         }else{
             console.log(apiInformation.information.message);
         }

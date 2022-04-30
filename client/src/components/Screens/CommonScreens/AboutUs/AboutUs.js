@@ -8,6 +8,7 @@ import NormalScreenBody from '../../../CommonComponents/Body/NormalScreenBody';
 import Footer from '../../../CommonComponents/Footer/Footer';
 import { college__logo } from '../../../constants/images';
 import UpperHeaderLog from '../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
+import UpperHeaderUserLog from '../../../PostLoginComponents/User/Header/UpperHeaderLog';
 import LowerHeaderAdmin from '../../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
 
 function AboutUs(){
@@ -15,7 +16,7 @@ function AboutUs(){
     return(
         <>  
             {
-                localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : <UpperHeader image = { college__logo } />
+                localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : localStorage.getItem('userEmail') ? <UpperHeaderUserLog image = {college__logo} /> : <UpperHeader image = {college__logo} />
             }
 
             {

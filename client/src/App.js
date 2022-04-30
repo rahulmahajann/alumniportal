@@ -16,6 +16,8 @@ import ApprovedMembers from "./components/Screens/PostLoginScreens/Admin/Members
 import PendingMembers from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembers";
 import PendingMembersList from "./components/Screens/PostLoginScreens/Admin/Members/PendingMembersList";
 import AddNews from "./components/Screens/PostLoginScreens/Admin/Newsroom/AddNews";
+import UserHome from "./components/Screens/PostLoginScreens/User/UserHome";
+import UserProfile from "./components/Screens/PostLoginScreens/User/UserProfile";
 import Login from "./components/Screens/PreLoginScreens/Login";
 import LoginAdmin from "./components/Screens/PreLoginScreens/LoginAdmin";
 import ForgotPassword from "./components/Screens/PreLoginScreens/Password/ForgotPassword";
@@ -44,7 +46,9 @@ function App() {
           <Route path = '/loginadmin' element = {<LoginAdmin />} />
           <Route path = '/userregdetail' element = {<UserRegDetails />} />
           <Route path = '/admin' element = {<AdminHome />} />
+          <Route path = '/user' element = {<UserHome />} />
           <Route path = '/adminprofile' element = {<AdminProfile />} />
+          <Route path = '/userprofile' element = {<UserProfile />} />
           <Route path = '/contactusadmin' element = {<ContactUsAdmin />} />
           <Route path = '/pendingmembers' element = {<PendingMembers />} />
           <Route path = '/approvedmembers' element = {<ApprovedMembers />} />

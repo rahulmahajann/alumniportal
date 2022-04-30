@@ -15,9 +15,6 @@ function AdminProfile(){
         }
         <NormalScreenBody Heading = 'This is Admin Profile' Content = 'welcome to your profile admins' />
         <Footer/>
-            {/* <h1>
-                this is admin profile
-            </h1> */}
         </>
     )
 }
