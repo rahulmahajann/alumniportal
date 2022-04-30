@@ -15,6 +15,13 @@ import UpperHeaderUserLog from '../../../PostLoginComponents/User/Header/UpperHe
 
 function NewsRoom(){
 
+    const [searchQuery,setSearchQuery]=useState('');
+
+    // async function searchHandler(e){
+    //     e.preventDefault();
+
+    // }
+
     return(
         <>
             {
@@ -23,11 +30,18 @@ function NewsRoom(){
             {
                 localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />
             }
-            <NormalScreenBody
-                Heading = {'Newsroom'}
-                Content={<NewsroomList />}
-                
-            />
+            <div className='newsroom_container' style={{display:'flex', flexDirection:'row'}}>
+                <NormalScreenBody
+                    Heading = {'Newsroom'}
+                    Content={<NewsroomList />}
+                    SearchQuery={searchQuery}
+                    
+                />
+                <div className='search_container'>
+                    <input type="text" onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
+                    {/* <button onChange={(e)=>{searchHandler(e)}}>Search</button> */}
+                </div>
+            </div>
             <Footer />
         </>
     )

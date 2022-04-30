@@ -5,24 +5,40 @@ import { getNewsroomData } from "../../../service/api";
 
 
 
-function NewsroomList(){
+function NewsroomList(props){
 
     const [newsItems,setNewsItems]=useState([]);
     const [pageNumber,setPageNumber]=useState(0);
+    const [searchPageNumber,setSearchPageNumber]=useState(0);
     const [loadMoreEnable,setLoadMoreEnable]=useState(true);
 
     useEffect(async()=>{
-        const newsroomData = await getNewsroomData(pageNumber);
-        console.log("🚀 ~ file: NewsroomList.js ~ line 16 ~ useEffect ~ newsroomData", newsroomData)
-        // console.log(newsroomData);
-        if(newsroomData.remainingNewsCount <= 0){
-            setLoadMoreEnable(false);
+
+        if(props.searchQuery){
+
+            const newsroomData=await getNewsBySearch(props.searchQuery,searchPageNumber);
+            if(newsroomData.remainingNewsCount <= 0){
+                setLoadMoreEnable(false);
+            }
+    
+            setNewsItems(newsItems.concat(newsroomData.data));
+
         }
 
-        setNewsItems(newsItems.concat(newsroomData.data));
+        else{
+            const newsroomData = await getNewsroomData(pageNumber);
+            if(newsroomData.remainingNewsCount <= 0){
+                setLoadMoreEnable(false);
+            }
+    
+            setNewsItems(newsItems.concat(newsroomData.data));
+        }
+        console.log("🚀 ~ file: NewsroomList.js ~ line 16 ~ useEffect ~ newsroomData", newsroomData);
+        // console.log(newsroomData);
+       
         // console.log(newsItems);
         
-    },[pageNumber]);
+    },[pageNumber,searchPageNumber]);
 
     const showNews = (e, news) => {
         console.log(news);
@@ -30,7 +46,12 @@ function NewsroomList(){
 
     const loadMoreNews = async (e) => {
         e.preventDefault();
-        setPageNumber(pageNumber+1);
+        if(props.serachQuery){
+            setSearchPageNumber(searchPageNumber+1);
+        }
+        else{
+            setPageNumber(pageNumber+1);
+        }
         // setLoadMoreEnable(false);
         console.log(pageNumber);
         // const moreNewsRoomData = await getNewsroomData(pageNumber);
