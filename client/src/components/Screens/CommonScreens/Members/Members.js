@@ -10,6 +10,7 @@ import Footer from '../../../CommonComponents/Footer/Footer';
 import UpperHeaderLog from '../../../PostLoginComponents/Admin/Header/UpperHeaderLog';
 import LowerHeaderAdmin from '../../../PostLoginComponents/Admin/Header/LowerHeaderAdmin';
 import UpperHeaderUserLog from '../../../PostLoginComponents/User/Header/UpperHeaderLog';
+import ApprovedMembersList from '../../PostLoginScreens/Admin/Members/ApprovedMembersList';
 
 function Members(){
     return(
@@ -20,7 +21,7 @@ function Members(){
             {
                 localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />
             }
-            <NormalScreenBody Heading = {'Members'} />
+            <NormalScreenBody Heading = {'Members'} Content = {<ApprovedMembersList />} />
             <Footer />
         </>
     )

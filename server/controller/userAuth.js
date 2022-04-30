@@ -146,7 +146,7 @@ const getPendingMembers = async (req, res) => {
 
 const getApprovedMembers = async (req, res) => {
 
-    const allApprovedMembers = await userAuth.find({isApproved: true});
+    const allApprovedMembers = await userAuth.find({isApproved: true}).sort({createdAt: -1});
     return res.json(allApprovedMembers);
 
 }
