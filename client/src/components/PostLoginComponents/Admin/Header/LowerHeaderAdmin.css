@@ -69,6 +69,11 @@
     background: var(--hoverContentBgColor);
 }
 
+#newsRoom:hover .hoverContent{
+    display: block;
+    background: var(--hoverContentBgColor);
+}
+
 #contactUs:hover {
     background: var(--hoverColor);
 }

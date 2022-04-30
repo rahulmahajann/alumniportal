@@ -26,19 +26,6 @@ function ApprovedMembersList(){
                 approvedMembers && approvedMembers?.map((item, ind) => (
                     
                     <ContainerApproval userInfo = {item} />
-
-                    // <>
-                    //     <h1>{item.userEmail}</h1>
-                    //     <h1>{item.userName}</h1>
-                    //     <h1>{item.userMobile}</h1>
-                    //     <h1>{item.userGender}</h1>
-                    //     <h1>{item.userDOB}</h1>
-                    //     <h1>{item.userCity}</h1>
-                    //     <h1>{item.userEnrollmentNumber}</h1>
-                    //     <h1>{item.userBatch}</h1>
-                    //     <h1>{item.userCourseAndBranch}</h1>
-                    //     <br />
-                    // </>
                 ))
             }
 

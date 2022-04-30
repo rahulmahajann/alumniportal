@@ -6,6 +6,8 @@ const databaseConnection = require('./databaseConnection');
 const userAuth = require('./routes/userAuth');
 const adminAuth = require('./routes/adminAuth');
 const adminDetails = require('./routes/adminDetails');
+const frontendData = require('./routes/frontendData');
+const contactUs = require('./routes/contactUs');
 
 const app = express();
 app.use(bodyParser.json({extended: true}));
@@ -24,6 +26,8 @@ app.get('/test', (req, res) => {
 app.use('/',userAuth);
 app.use('/',adminAuth);
 app.use('/',adminDetails);
+app.use('/',frontendData);
+app.use('/',contactUs)
 
 app.listen(PORT, () => {
     console.log(`PORT IS RUNNING ON ${PORT}`);

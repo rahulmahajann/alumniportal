@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { color2 } from '../../../constants/colors';
+import { saveContactUsFormData } from '../../../service/api';
 import './ContactUsForm.css';
 
 const initialValue = {
@@ -22,10 +23,12 @@ function ContactUsForm(){
     }
 
     
-    const submitFormValue = (e) => {
+    const submitFormValue = async (e) => {
         // console.log('submit button clicked FROM contactUs');
         console.log('formData', formData);
-    }
+        const apiInformation = await saveContactUsFormData(formData)
+        console.log(apiInformation);
+    }   
 
     const register__Form = {
         display: 'flex',
