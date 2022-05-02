@@ -220,3 +220,16 @@ export const saveContactUsFormData = async (formData) => {
         console.log(err);
     }
 }
+
+export const getNewsBySearch = async(searchQuery) => {
+    try{
+        console.log(123);
+        console.log(searchQuery);
+        const awazAii = await axios.post(`${URL}/newsSearchByName`, searchQuery);
+        console.log(awazAii);
+        return awazAii.data;
+    }catch(err){
+        console.log(err);
+    }
+
+}
