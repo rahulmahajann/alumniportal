@@ -99,7 +99,7 @@ function NewsRoom(){
                         <button style={{marginLeft:'2.5%',width:'25%'}}onClick={(e)=>{searchHandler(e)}}>Search</button>
                     </div>,     
                     <NewsroomList data={newsroomData} />,
-                    <button style={loadMoreStyle}  disabled={!loadMoreEnable} onClick={(e)=>{loadMoreHandler(e)}}>Load More</button>
+                    <button style={loadMoreStyle}  hidden={!loadMoreEnable} onClick={(e)=>{loadMoreHandler(e)}}>Load More</button>
                 ]
 
                 }>       
