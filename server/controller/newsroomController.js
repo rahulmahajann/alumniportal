@@ -56,6 +56,7 @@ const getNewsById = async (req, res) => {
 
 const newsSearchByName = async (req, res) => {
     const { newsTitle, pageNumber } = req.body;
+    console.log(req.body);
 
     const newsDataCount = await newsItem.find({title: {$regex: newsTitle}});
     const totalNewsCount = newsDataCount.length;
