@@ -7,6 +7,11 @@ const newsSchema = mongoose.Schema({
         required:true,
     },
 
+    duplicateTitle: {
+        type: String,
+        required: true,
+    },
+
     img:{
         type:String,
         required:false,

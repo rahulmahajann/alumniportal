@@ -9,6 +9,7 @@ const addNewsItem = async(req,res) => {
 
     const newNewsItem = new newsItem({
         title,
+        duplicateTitle: title.toLowerCase(),
         img,
         content,
     })
@@ -55,13 +56,13 @@ const getNewsById = async (req, res) => {
 }
 
 const newsSearchByName = async (req, res) => {
-    const { newsTitle, pageNumber } = req.body;
+    let { newsTitle, pageNumber } = req.body;
     console.log(req.body);
-
-    const newsDataCount = await newsItem.find({title: {$regex: newsTitle}});
+    newsTitle = newsTitle.toLowerCase();
+    const newsDataCount = await newsItem.find({duplicateTitle: {$regex: newsTitle}});
     const totalNewsCount = newsDataCount.length;
 
-    const newsData = await newsItem.find({title: {$regex: newsTitle}}).sort({createdAt: -1}).skip(parseInt(pageNumber)*5).limit(5);
+    const newsData = await newsItem.find({duplicateTitle: {$regex: newsTitle}}).sort({createdAt: -1}).skip(parseInt(pageNumber)*5).limit(5);
     const resultObj = {
         totalNewsCount: totalNewsCount,
         data: newsData,
