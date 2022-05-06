@@ -35,7 +35,8 @@ function NewsroomList(props){
 
     const content_style = {
         borderTop:`0.5px solid ${color2}`,
-        fontFace:'inter'
+        fontFace:'inter',
+        wordWrap:'break-word',
 
     }
 

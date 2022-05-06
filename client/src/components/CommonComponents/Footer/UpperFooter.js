@@ -1,10 +1,10 @@
 // libraries import
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faLinkedin, faChrome } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faInstagram, faLinkedin, faChrome, faChromecast, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 // files import
-import { collegeWebsiteLink, collegeFacebookLink, collegeInstagramLink, collegeLinkedinLink } from '../../constants/links';
+import { collegeWebsiteLink, collegeFacebookLink, collegeInstagramLink, collegeLinkedinLink, collegeTwitterLink } from '../../constants/links';
 import './UpperFooter.css';
 
 function UpperFooter(){
@@ -28,6 +28,7 @@ function UpperFooter(){
     const linkDiv__upperFooter = {
         margin: '10px',
         height: '20px'
+
     }
 
     const linkIcon__upperHeader = {
@@ -56,6 +57,15 @@ function UpperFooter(){
                     style = {link__upperFooter}
                 >
                     <FontAwesomeIcon id = 'facebookIcon' style = { linkIcon__upperHeader } icon = { faFacebook } />
+                </a>
+            </div>
+            <div style = {linkDiv__upperFooter} >
+                <a
+                    href = {collegeTwitterLink}
+                    target = '_blank'
+                    style = {link__upperFooter}
+                >
+                    <FontAwesomeIcon id = 'twitterIcon' style = { linkIcon__upperHeader } icon = { faTwitter } />
                 </a>
             </div>
 

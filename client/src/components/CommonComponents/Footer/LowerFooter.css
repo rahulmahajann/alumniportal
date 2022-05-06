@@ -1,0 +1,31 @@
+#instagram_Icon{
+    color: #cd80fd;
+}
+
+#linkedin_Icon{
+    color: #6fb8f8;
+}
+
+#github_Icon{
+    color:#161515;
+}
+
+#mail_Icon{
+    color:#4b810e;
+}
+
+#instagram_Icon:hover{
+    color:#fd81b1;
+}
+
+#github_Icon:hover{
+    color:#827d7d;
+}
+
+#linkedin_Icon:hover{
+    color:#6df8dc;
+}
+
+#mail_Icon:hover{
+    color:#c3f28c;
+}

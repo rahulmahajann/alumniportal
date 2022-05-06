@@ -30,7 +30,7 @@ function NewsRoom(){
         if(!searchQuery){
             const data = await getNewsroomData(pageNumber);
             console.log(data.data);
-            if(data.remainingNewsCount<=0){
+            if(data?.remainingNewsCount<=0){
                 setLoadMoreEnable(false);
             }
             setNewsroomData(newsroomData.concat(data.data));
@@ -38,10 +38,10 @@ function NewsRoom(){
         else{
             const data = await getNewsBySearch({newsTitle:realSearchQuery,pageNumber:pageNumber});
             console.log(data.data);
-            if(data.remainingNewsCount <= 0){
+            if(data?.remainingNewsCount <= 0){
                 setLoadMoreEnable(false);
             }
-            setNewsroomData(newsroomData.concat(data.data));
+            setNewsroomData(newsroomData.concat(data?.data));
         }
     },[pageNumber,search]);
 
