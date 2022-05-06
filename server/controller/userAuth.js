@@ -151,6 +151,26 @@ const getApprovedMembers = async (req, res) => {
 
 }
 
+const getApprovedMemberByFilter = async (req, res) => {
+
+    const {name, batch, courseAndBranch} = req.body;
+    console.log('name>>>>>>>>' + name + 'rahuu');
+    // if(!name || name == ''){
+    //     name = ' '
+    // } 
+
+    const allApprovedMembers = await userAuth.find({
+        $and: [
+            // {userName: name},
+            {userBatch: batch},
+            {userCourseAndBranch: courseAndBranch}
+        ]
+    })
+
+    res.send(allApprovedMembers)
+
+}
+
 const updatePendingMember = async (req, res) => {
     const userId = req.body.userId;
 
@@ -313,4 +333,4 @@ const updatePassword = async(req,res) => {
     console.log(passwordChanged);
     return res.status(200).json(passwordChanged);
 }
-module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber, sendOtp, updatePassword };
+module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber, sendOtp, updatePassword, getApprovedMemberByFilter };

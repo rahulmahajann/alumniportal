@@ -91,7 +91,45 @@ function LowerFooter(){
                     {/* <img style={image_style} src="http://res.cloudinary.com/mehulp1612/image/upload/v1651606695/insta-clone/ezxognyw5ztpyc36o5rb.png"></img> */}
                 </div>
                 <div style={profile_Card}> 
-                    <div>Mehul Pandey</div>
+                    <div>Mehul Pandey urf chotta</div>
+                    <div style={social_container}>
+                        <a href = {""} target = '_blank' style = {link__upperFooter}>
+                            <FontAwesomeIcon id = 'linkedin_Icon' style = { linkIcon__upperHeader } icon = { faLinkedin } />
+                        </a>
+                        <a href = {""} target = '_blank' style = {link__upperFooter}>
+                            <FontAwesomeIcon id = 'github_Icon' style = { linkIcon__upperHeader } icon = { faGithub } />
+                        </a>
+                        <a href = {""} target = '_blank' style = {link__upperFooter}>
+                            <FontAwesomeIcon id = 'instagram_Icon' style = { linkIcon__upperHeader } icon = { faInstagram } />
+                        </a>
+                        <a href = {""} target = '_blank' style = {link__upperFooter}>
+                            <FontAwesomeIcon id = 'mail_Icon' style = { linkIcon__upperHeader } icon ={faEnvelope} />
+                        </a>
+                    </div>
+                
+                    {/* <img style={image_style} src="http://res.cloudinary.com/mehulp1612/image/upload/v1651606695/insta-clone/ezxognyw5ztpyc36o5rb.png"></img> */}
+                </div>
+                <div style={profile_Card}> 
+                    <div>Pritish Nagpal</div>
+                    <div style={social_container}>
+                        <a href = {""} target = '_blank' style = {link__upperFooter}>
+                            <FontAwesomeIcon id = 'linkedin_Icon' style = { linkIcon__upperHeader } icon = { faLinkedin } />
+                        </a>
+                        <a href = {""} target = '_blank' style = {link__upperFooter}>
+                            <FontAwesomeIcon id = 'github_Icon' style = { linkIcon__upperHeader } icon = { faGithub } />
+                        </a>
+                        <a href = {""} target = '_blank' style = {link__upperFooter}>
+                            <FontAwesomeIcon id = 'instagram_Icon' style = { linkIcon__upperHeader } icon = { faInstagram } />
+                        </a>
+                        <a href = {""} target = '_blank' style = {link__upperFooter}>
+                            <FontAwesomeIcon id = 'mail_Icon' style = { linkIcon__upperHeader } icon ={faEnvelope} />
+                        </a>
+                    </div>
+                
+                    {/* <img style={image_style} src="http://res.cloudinary.com/mehulp1612/image/upload/v1651606695/insta-clone/ezxognyw5ztpyc36o5rb.png"></img> */}
+                </div>
+                <div style={profile_Card}> 
+                    <div>SHUBHAM AGGARWAL urf  president</div>
                     <div style={social_container}>
                         <a href = {""} target = '_blank' style = {link__upperFooter}>
                             <FontAwesomeIcon id = 'linkedin_Icon' style = { linkIcon__upperHeader } icon = { faLinkedin } />
