@@ -14,9 +14,11 @@ function Home(){
             {
                 localStorage.getItem('email') ? <UpperHeaderLog image = { college__logo } /> : localStorage.getItem('userEmail') ? <UpperHeaderUserLog image = {college__logo} /> : <UpperHeader image = { college__logo } />
             }
-            {
-                localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />
-            }
+            
+              
+                <LowerHeaderAdmin />
+                {/* <LowerHeader /> */}
+            
             <NormalScreenBody
                 Heading = {'Home'}
                 Content = {'this is home page read along to know more'}
