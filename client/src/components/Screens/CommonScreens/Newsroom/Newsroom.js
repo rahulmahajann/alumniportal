@@ -74,12 +74,16 @@ function NewsRoom(){
     }
 
     const search_container_Style={
-        marginLeft:'50%',
+        display:'flex',
+        flexDirection:'row',
+        // width:'50%',
+        flexWrap:'wrap',
+        justifyContent:'flex-end',
         // marginRight:"1px",
         // width:'100%',
         height:'10%',
         // background:'#F6F6F6',
-        borderBottom:`1px solid ${color2}`,
+        // borderBottom:`1px solid ${color2}`,
     }
     return(
         <>
@@ -95,10 +99,10 @@ function NewsRoom(){
                     // Content={!realSearchQuery?<NewsroomList/>:<NewsroomSearchList searchQuery={realSearchQuery} />}
                     Content = {[
                     <div style={search_container_Style} className='search_container'>
-                        <input placeholder="Type here to search" style={{marginRight:'2.5%',width:'70%'}}type="text" onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
-                        <button style={{marginLeft:'2.5%',width:'25%'}}onClick={(e)=>{searchHandler(e)}}>Search</button>
+                        <input placeholder="Type here to search" style={{marginRight:'5px'}}type="text" onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
+                        <button style={{marginLeft:'5px'}}onClick={(e)=>{searchHandler(e)}}>Search</button>
                     </div>,     
-                    <NewsroomList data={newsroomData} />,
+                    <NewsroomList data={newsroomData}/>,
                     <button style={loadMoreStyle}  hidden={!loadMoreEnable} onClick={(e)=>{loadMoreHandler(e)}}>Load More</button>
                 ]
 
