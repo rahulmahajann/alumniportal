@@ -83,6 +83,7 @@ function LoginAdminForm(props){
 
     const saveUserLoginEmail = async (e) => {
         // console.log(adminLoginDetails);
+        toast.loading("Logging In");
         const apiInformation = await adminLogin(adminLoginDetails);
         // console.log(apiInformation.information.message);
         if(apiInformation.information.message === 'successfully logged in!'){
@@ -91,6 +92,7 @@ function LoginAdminForm(props){
             localStorage.setItem('isAdmin', apiInformation.information.isAdmin);
             localStorage.setItem('email', adminLoginDetails.adminEmail);
             navigate('/admin');
+            toast.dismiss();
             toast.success(apiInformation.information.message);
         }else{
             toast.error(apiInformation.information.message);
