@@ -27,6 +27,9 @@ function ContainerApproval(props){
         marginLeft: '25px',
         alignItem: 'center',
         width: '100%',
+        wordWrap:'break-word',
+        textAlign:'left',
+
         // margin: 'auto'
         // justifyContent: 'center'
     }
@@ -34,7 +37,9 @@ function ContainerApproval(props){
     const row__Data = {
         display: 'flex',
         // width: '100%',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        flexDirection:'row',
+        flexWrap:'wrap',
     }
 
     return(
@@ -78,12 +83,12 @@ function ContainerApproval(props){
 
                 <div>
                     {/* Roll Number */}
-                    EnrollmenrNumber: {userInfo.userEnrollmentNumber}
+                    Enrollment Number: {userInfo.userEnrollmentNumber}
                 </div>
 
                 <div>
                     {/* Mobile Number */}
-                    PhoneNumber: +91-{userInfo.userMobile}
+                    Phone Number: +91-{userInfo.userMobile}
                 </div>
 
             </div>

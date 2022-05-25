@@ -38,12 +38,21 @@ function PendingMembersList(){
     }
     
     const buttons__PendingMembersList = {
-        border: 'none'
+        border: 'none',
+        height:'35px',
+        minWidth:'75px',
+        background:'#228b22',
+        color:"white",
+        fontSize:'15px',
+        fontWeight:'bold',
+        textAlign:'center',
+
+
     }
 
     const div__buttons = {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-around'
     }
 
     return(
@@ -54,7 +63,7 @@ function PendingMembersList(){
                         <ContainerApproval userInfo = {item} />
                         <div style = {div__buttons} >
                             <button style = {buttons__PendingMembersList} onClick = {(e) => approveMember(e, item._id)} >Approve</button>
-                            <button style = {buttons__PendingMembersList} onClick = {(e) => deleteMember(e,item._id)} >Decline</button>
+                            <button style = {{...buttons__PendingMembersList,background:'#cc0000'}} onClick = {(e) => deleteMember(e,item._id)} >Decline</button>
                         </div>
                     </div>
                 ))

@@ -22,7 +22,9 @@ const dateStyle = {
 }
 
 const newsStyle = {
-    fontSize:'18px'
+    fontSize:'18px',
+    wordWrap:'break-word',
+    width:'95%'
 }
 
 function DetailedNewsItem(props){

@@ -25,38 +25,46 @@ function RegisterForm(props){
 
     const externalButton__Linkedin = {
         margin: '5px',
-        height: '45px',
+        minHeight: '45px',
         borderRadius: '10px',
         color: color3,
         background:color10,
         fontSize: '18px',
         display: 'flex',
+        flexDirection:'row',
+        flexWrap:'wrap',
+        justifyContent:'space-evenly',
         alignItems: 'center',
-        alignContent: 'flex-start',
+        alignContent: 'center',
         border: 'none',
     }
 
     const linkedin__Style = {
-        marginRight: '120px',
-        marginLeft: '15px'
+        // marginRight: '120px',
+        // marginLeft: '15px'
+        fontSize:'22px',
     }
 
     const externalButton__Google = {
         margin: '5px',
-        height: '45px',
+        minHeight: '45px',
         borderRadius: '10px',
         color: color3,
         background: color11,
         fontSize: '18px',
         display: 'flex',
+        flexDirection:'row',
+        flexWrap:'wrap',
+        justifyContent:'space-evenly',
         alignItems: 'center',
-        alignContent: 'flex-start',
+        alignContent: 'center',
         border: 'none'
     }
     
     const google__Style = {
-        marginRight: '120px',
-        marginLeft: '15px'
+        // marginRight: '120px',
+        // marginLeft: '15px'
+        fontSize:'22px',
     }
 
     const register__Form = {

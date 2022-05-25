@@ -10,7 +10,8 @@ function LowerFooter(){
 
     const complete__lowerFooter = {
         display:'flex',
-        flexFlow:'row-wrap',
+        flexDirection:'row',
+        flexWrap:'wrap',
         justifyContent:'space-around',
         alignItems:'center',
         left: '0',
@@ -91,7 +92,7 @@ function LowerFooter(){
                     {/* <img style={image_style} src="http://res.cloudinary.com/mehulp1612/image/upload/v1651606695/insta-clone/ezxognyw5ztpyc36o5rb.png"></img> */}
                 </div>
                 <div style={profile_Card}> 
-                    <div>Mehul Pandey urf chotta</div>
+                    <div>Mehul Pandey</div>
                     <div style={social_container}>
                         <a href = {""} target = '_blank' style = {link__upperFooter}>
                             <FontAwesomeIcon id = 'linkedin_Icon' style = { linkIcon__upperHeader } icon = { faLinkedin } />
@@ -129,7 +130,7 @@ function LowerFooter(){
                     {/* <img style={image_style} src="http://res.cloudinary.com/mehulp1612/image/upload/v1651606695/insta-clone/ezxognyw5ztpyc36o5rb.png"></img> */}
                 </div>
                 <div style={profile_Card}> 
-                    <div>SHUBHAM AGGARWAL urf  president</div>
+                    <div>SHUBHAM AGGARWAL</div>
                     <div style={social_container}>
                         <a href = {""} target = '_blank' style = {link__upperFooter}>
                             <FontAwesomeIcon id = 'linkedin_Icon' style = { linkIcon__upperHeader } icon = { faLinkedin } />
@@ -155,9 +156,10 @@ function LowerFooter(){
             </div>
             <div style={{...personal_branding,fontSize:'18px',}}>
                 <div style={{color:'#fa6020',fontSize:'25px'}}>Contact Info:</div>
-                <div style={{margin:'10px 0 0 10px'}}>
+                <div style={{margin:'10px 0 10px 10px'}}>
                     <div style={heading}>Location:</div>
-                    <div>FC-26, Shastri Park, New Delhi - 110 053</div>
+                    <div>FC-26, Shastri Park,</div>
+                    <div>New Delhi - 110 053</div>
                     <div style={heading}>Phone Numbers</div>
                     <div>+91(11) 49905900-99</div>
                     <div style={heading}>E-mail:</div>

@@ -116,7 +116,8 @@ const login = async (req, res) => {
         userEmail
     });
 
-    if(isUserEmailExist){
+    // console.log(isUserEmailExist);
+    if(isUserEmailExist && isUserEmailExist.hasOwnProperty(userPassword)){
         const isValidPassword = await bcrypt.compare(userPassword, isUserEmailExist.userPassword);
         if(isValidPassword){
             return res.json({
