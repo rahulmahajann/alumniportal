@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { toast } from 'react-toastify';
 import { color2 } from '../../../constants/colors';
 import { saveContactUsFormData } from '../../../service/api';
 import './ContactUsForm.css';
@@ -24,9 +25,18 @@ function ContactUsForm(){
 
     
     const submitFormValue = async (e) => {
+        toast.loading("Submitting Query");
         // console.log('submit button clicked FROM contactUs');
-        console.log('formData', formData);
+        // console.log('formData', formData);
         const apiInformation = await saveContactUsFormData(formData)
+        if(apiInformation.message=="Your query sent successfully"){
+            toast.dismiss();
+            toast.success(apiInformation.message);
+        }
+        else{
+            toast.dismiss();
+            toast.error("Form Values Missing");
+        }
         console.log(apiInformation);
     }   
 

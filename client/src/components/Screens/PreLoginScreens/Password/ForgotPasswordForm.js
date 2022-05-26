@@ -7,7 +7,6 @@ import { color2 } from '../../../constants/colors';
 import { sendOtp, updatePassword } from '../../../service/api';
 
 
-
 function ForgotPasswordForm(){
 
     const navigate=useNavigate();
@@ -89,27 +88,34 @@ function ForgotPasswordForm(){
         });
     }
     const handleEmail = async(e) =>{
+        toast.loading("Verifying Information");
         e.preventDefault();
         console.log(userDetails.email);
         const apiInformation=await sendOtp(userDetails.email);
         if(apiInformation==="User not Found"){
+            toast.dismiss();
             toast.error(apiInformation);
         }
         else{
 
         setOtp(apiInformation);
+        toast.dismiss();
         toast.success("OTP has been sent to the registered email");
         setEmailChecked(true);
         }
     }
 
     const handleOtp = (e) => {
+        toast.loading("Checking OTP");
         e.preventDefault();
+        // backend se otp hashed aa rha hai, user ka normal, api banake verify krwana hai
         if(userDetails.otp==otp){
+            toast.dismiss();
             toast.success("OTP Matched");
             setOtpChecked(true);
         }
         else{
+            toast.dismiss();
             toast.error("Invalid otp");
         }
 
