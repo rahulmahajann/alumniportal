@@ -6,6 +6,7 @@ import './RegisterForm.css';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
 import { newRegisterEmail } from '../../service/api';
 
+
 const initialValue = {
     userEmail: ''
 }
@@ -115,7 +116,7 @@ function RegisterForm(props){
     }
 
     const span = {
-        background: '#fff', 
+        // background: '#fff', 
         padding: '0 10px', 
         borderRadius: '50%',
         height: '150px',

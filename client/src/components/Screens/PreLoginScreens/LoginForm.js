@@ -5,6 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
 import { login } from '../../service/api';
 import './LoginForm.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
 
 const initialValue = {
     userEmail: '',
@@ -150,12 +155,19 @@ function LoginForm(props){
     }
 
     const saveUserLoginEmail = async (e) => {
+
+        toast.loading("Logging In");
+
         const apiInformation = await login(userLoginData);
         if(apiInformation.information.message == 'successfully logged in!'){
             console.log(apiInformation.information.message);
+            toast.dismiss();
+            toast.success(apiInformation.information.message);
             navigate('/user');
             localStorage.setItem('userEmail', userLoginData.userEmail)
         }else{
+            toast.dismiss();
+            toast.error(apiInformation.information.message);
             console.log(apiInformation.information.message);
         }
 
