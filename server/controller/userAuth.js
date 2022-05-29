@@ -4,8 +4,6 @@ const nodemailer = require('nodemailer');
 
 const register = async (req, res) => {
     
-    console.log(req.body);
-
     const userSalutation = req.body.userSalutation;
     const userEmail = req.body.userEmail;
     const userName = req.body.userName;
@@ -17,32 +15,56 @@ const register = async (req, res) => {
     const userBatch = req.body.userBatch;
     const userCourseAndBranch = req.body.userCourseAndBranch;
     const userEnrollmentNumber = req.body.userEnrollmentNumber;
-
-    console.log(userImage, userBatch, userCourseAndBranch, userEnrollmentNumber);
+    const platform = req.body.platform;
 
     if(!userSalutation || !userEmail || !userName || !userGender || !userDOB || !userMobile || !userCity || !userImage || !userCourseAndBranch || !userBatch || !userEnrollmentNumber){
         return res.json('Data not complete');       
     }else{
-        const newUserAuth = new userAuth({
-            userSalutation,
-            userEmail,
-            userName,
-            userGender,
-            userDOB,
-            userMobile,
-            userCity,
-            userImage,
-            userEnrollmentNumber,
-            userBatch,
-            userCourseAndBranch
-        })
-
-        newUserAuth.save()
-            .then(() => {
-                res.json('userCreated')
-            }).catch((err) => {
-                res.json(err)
+        if(platform){
+            const newUserAuth = new userAuth({
+                userSalutation,
+                userEmail,
+                userName,
+                userGender,
+                userDOB,
+                userMobile,
+                userCity,
+                userImage,
+                userEnrollmentNumber,
+                userBatch,
+                userCourseAndBranch,
+                platform: 'google'
             })
+    
+            newUserAuth.save()
+                .then(() => {
+                    res.json('userCreated')
+                }).catch((err) => {
+                    res.json(err)
+                })
+        } else {
+            const newUserAuth = new userAuth({
+                userSalutation,
+                userEmail,
+                userName,
+                userGender,
+                userDOB,
+                userMobile,
+                userCity,
+                userImage,
+                userEnrollmentNumber,
+                userBatch,
+                userCourseAndBranch
+            })
+    
+            newUserAuth.save()
+                .then(() => {
+                    res.json('userCreated')
+                }).catch((err) => {
+                    res.json(err)
+                })
+        }
+        
     }
 
 
@@ -359,4 +381,28 @@ const searchMember = async (req, res) => {
     }
 }
 
-module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber, sendOtp, updatePassword, getApprovedMemberByFilter, searchMember };
+const checkUserWithGoogle = async (req, res) => {
+    const {userEmail} = req.body;
+    const apiResponse = await userAuth.findOne({
+        userEmail
+    });
+    if(!apiResponse) {
+        return res.send({
+            message: 'signup',
+            success: false
+        })
+    }
+    if(apiResponse && apiResponse.platform != 'google'){
+        return res.send({
+            message: 'You are signed up using simple email. Please try again with normal login.',
+            success: false
+        })
+    }
+    return res.send({
+        success: true,
+        message: 'login'
+    })
+    // Mehul Pandey 020
+}
+
+module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber, sendOtp, updatePassword, getApprovedMemberByFilter, searchMember, checkUserWithGoogle };

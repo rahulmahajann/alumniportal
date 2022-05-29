@@ -70,6 +70,11 @@ const userAuthSchema = mongoose.Schema({
 
         userPassword: {
             type: String,
+        },
+
+        platform: {
+            type: String,
+            default: null
         }
 
 
