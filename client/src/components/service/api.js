@@ -233,3 +233,21 @@ export const getNewsBySearch = async(searchQuery) => {
     }
 
 }
+
+export const userByGoogle = async(searchQuery) => {
+    try {
+        const awazAii = await axios.post(`${URL}/checkuserwithgoogle`, searchQuery);
+        return awazAii.data;
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+export const searchPendingMembers = async(searchQuery) => {
+    try {
+        const awazAii = axios.post(`${URL}/filtermembers`, searchQuery);
+        return awazAii;
+    } catch(err) {
+        console.log(err);
+    }
+}

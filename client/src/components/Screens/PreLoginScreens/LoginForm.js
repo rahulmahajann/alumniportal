@@ -9,7 +9,7 @@ import {
   color3,
   color8,
 } from "../../constants/colors";
-import { login } from "../../service/api";
+import { login, userByGoogle } from "../../service/api";
 import "./LoginForm.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -190,6 +190,8 @@ function LoginForm(props) {
       "🚀 ~ file: LoginForm.js ~ line 189 ~ googleLogin ~ payload",
       payload
     );
+    const apiInformation = await userByGoogle(payload);
+    console.log(apiInformation);
   }
 
   return (

@@ -4,7 +4,7 @@ import { faGoogle, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './RegisterForm.css';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
-import { newRegisterEmail } from '../../service/api';
+import { newRegisterEmail, userByGoogle } from '../../service/api';
 import loginWithGoogle from "../../../service/Auth/googleLogin";
 
 
@@ -155,6 +155,10 @@ function RegisterForm(props){
           "🚀 ~ file: LoginForm.js ~ line 189 ~ googleLogin ~ payload",
           payload
         );
+        const apiInformation = await userByGoogle(payload);
+        console.log(apiInformation);
+        // api call maine abhi bnai hai!
+        // if(response)
       }
 
     return(
