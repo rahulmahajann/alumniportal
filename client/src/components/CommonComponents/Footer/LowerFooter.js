@@ -74,7 +74,7 @@ function LowerFooter(){
             <div style={personal_branding}>
                 <div style={heading}>Creators:</div>
                 <div style={profile_Card}> 
-                    <div>Rahul Mahajan OP</div>
+                    <div>Rahul Mahajan</div>
                     <div style={social_container}>
                         <a href = {rahulLinkedinLink} target = '_blank' style = {link__upperFooter}>
                             <FontAwesomeIcon id = 'linkedin_Icon' style = { linkIcon__upperHeader } icon = { faLinkedin } />
@@ -130,7 +130,7 @@ function LowerFooter(){
                     {/* <img style={image_style} src="http://res.cloudinary.com/mehulp1612/image/upload/v1651606695/insta-clone/ezxognyw5ztpyc36o5rb.png"></img> */}
                 </div>
                 <div style={profile_Card}> 
-                    <div>SHUBHAM AGGARWAL</div>
+                    <div>Shubham Aggarwal</div>
                     <div style={social_container}>
                         <a href = {""} target = '_blank' style = {link__upperFooter}>
                             <FontAwesomeIcon id = 'linkedin_Icon' style = { linkIcon__upperHeader } icon = { faLinkedin } />

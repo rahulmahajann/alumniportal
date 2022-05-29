@@ -56,7 +56,7 @@ function UpperHeader(props) {
             <div style = { linkDiv__headerUpper } >
                 <Link style = { link__linkDiv } to = {'/register'} >Register</Link>   
                 <Link style = { link__linkDiv } to = {'/login'} >Login</Link>   
-                <Link style = { link__linkDiv } to = {'/loginadmin'} >Login-as-Admin</Link>   
+                <Link style = { link__linkDiv } to = {'/loginadmin'} >Admin</Link>   
             </div> 
 
 

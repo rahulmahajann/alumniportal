@@ -117,8 +117,9 @@ const login = async (req, res) => {
     });
 
     // console.log(isUserEmailExist);
-    if(isUserEmailExist && isUserEmailExist.hasOwnProperty(userPassword)){
+    if(isUserEmailExist && isUserEmailExist.userPassword){
         const isValidPassword = await bcrypt.compare(userPassword, isUserEmailExist.userPassword);
+        console.log("🚀 ~ file: userAuth.js ~ line 122 ~ login ~ isValidPassword", isValidPassword)
         if(isValidPassword){
             return res.json({
                 message: 'successfully logged in!',
@@ -193,7 +194,7 @@ const updatePendingMember = async (req, res) => {
         temporaryPassword += alphabets[Math.floor(Math.random()*26)];
     }
 
-    const encryptedPassword = await bcrypt.hash(temporaryPassword, 16);
+    const encryptedPassword = await bcrypt.hash(temporaryPassword, 3);
 
     await userAuth.findByIdAndUpdate(userId, {
         userPassword: encryptedPassword
@@ -268,7 +269,7 @@ const updateResetPassword = async (req, res) => {
 
     console.log(userInformation);
 
-    const encryptedPassword = await bcrypt.hash(userPassword, 16);
+    const encryptedPassword = await bcrypt.hash(userPassword, 3);
 
     await userAuth.findByIdAndUpdate(userInformation, {
         userPassword: encryptedPassword
@@ -295,7 +296,7 @@ const sendOtp = async (req,res) => {
             tempOtp += digits[Math.floor(Math.random()*10)];
         }
 
-        const otp = await bcrypt.hash(tempOtp, 16);
+        const otp = await bcrypt.hash(tempOtp, 3);
 
         const transpoter = nodemailer.createTransport({
             service: 'gmail',
@@ -327,11 +328,35 @@ const sendOtp = async (req,res) => {
 
 const updatePassword = async(req,res) => {
     const userPassword = await req.body.userPassword;
+    console.log("🚀 ~ file: userAuth.js ~ line 330 ~ updatePassword ~ userPassword", userPassword)
     const userEmail = await req.body.userEmail;
-    const hashedPassword= await bcrypt.hash(userPassword,16);
-    const passwordChanged = await userAuth.findOneAndUpdate({userEmail:userEmail},{userPassword:hashedPassword});
+    const hashedPassword= await bcrypt.hash(userPassword,3);
+    const passwordChanged = await userAuth.findOneAndUpdate({userEmail:userEmail},{userPassword: hashedPassword});
 
     console.log(passwordChanged);
     return res.status(200).json(passwordChanged);
 }
-module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber, sendOtp, updatePassword, getApprovedMemberByFilter };
+
+const searchMember = async (req, res) => {
+    try {
+        const {batch, courseAndBranch, name} = req.body;
+        let searchedObject = {isApproved:  false};
+        if(batch){
+            searchedObject.userBatch = batch;
+        }
+        if(courseAndBranch){
+            searchedObject.userCourseAndBranch = courseAndBranch;
+        }
+        if(name){
+            searchedObject.userName = name;
+        }
+        console.log("🚀 ~ file: userAuth.js ~ line 352 ~ searchMember ~ searchedObject", searchedObject)
+        const apiResponse = await userAuth.find(searchedObject);
+        console.log(apiResponse);
+        return res.send(apiResponse)
+    } catch(err) {
+        console.log('something went wrong');
+    }
+}
+
+module.exports = { updateResetPassword, validateEmailNPasswordForReset, newRegisterEmail, uniqueMobile , login, register, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueRollNumber, sendOtp, updatePassword, getApprovedMemberByFilter, searchMember };

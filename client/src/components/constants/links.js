@@ -7,3 +7,6 @@ export const rahulLinkedinLink = 'https://www.linkedin.com/in/rahul-mahajan-979a
 export const rahulGithubLink = 'https://github.com/rahulmahajann';
 export const rahulInstaLink = 'https://instagram.com/';
 export const rahulMailLink = 'mailto:rahulmahajan98645@gmail.com';
+export const mehulLinkedinLink = '';
+export const mehulGithubLink = '';
+

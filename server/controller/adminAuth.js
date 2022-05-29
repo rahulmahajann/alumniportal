@@ -25,7 +25,7 @@ const register = async (req, res) => {
         return res.json('Admin already exists for this id.')
     }else{
 
-        const encryptedPassword = await bcrypt.hash(adminPassword, 16);
+        const encryptedPassword = await bcrypt.hash(adminPassword, 4);
 
         const newAdminAuth = new adminAuth({
             adminName,

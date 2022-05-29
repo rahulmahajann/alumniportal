@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './RegisterForm.css';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
 import { newRegisterEmail } from '../../service/api';
+import loginWithGoogle from "../../../service/Auth/googleLogin";
 
 
 const initialValue = {
@@ -148,17 +149,25 @@ function RegisterForm(props){
         }
     }
 
+    async function googleLogin() {
+        const { payload } = await loginWithGoogle();
+        console.log(
+          "🚀 ~ file: LoginForm.js ~ line 189 ~ googleLogin ~ payload",
+          payload
+        );
+      }
+
     return(
         <div>
             <h4 style = { register__Title } >{props.title}</h4>
             <div style = {externlButton} >
-                <button style = {externalButton__Linkedin} > 
+                {/* <button style = {externalButton__Linkedin} > 
                     <FontAwesomeIcon style = { linkedin__Style } icon = {faLinkedin} />
                     {props.auth} with Linkedin
-                 </button>
-                <button style = {externalButton__Google} > 
+                 </button> */}
+                <button style = {externalButton__Google} onClick = {googleLogin}> 
                     <FontAwesomeIcon style = { google__Style } icon = {faGoogle} />
-                    {props.auth} with Google 
+                    Continue with Google 
                 </button>
             </div>
             <h5 style = {heading5Span} ><span style = {span} >or</span></h5>

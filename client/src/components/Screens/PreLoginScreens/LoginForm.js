@@ -196,13 +196,13 @@ function LoginForm(props) {
     <div style={newDiv}>
       <h4 style={login__Title}>{props.title}</h4>
       <div style={externlButton}>
-        <button style={externalButton__Linkedin}>
+        {/* <button style={externalButton__Linkedin}>
           <FontAwesomeIcon style={linkedin__Style} icon={faLinkedin} />
           {props.auth} with Linkedin
-        </button>
+        </button> */}
         <button style={externalButton__Google} onClick={googleLogin}>
           <FontAwesomeIcon style={google__Style} icon={faGoogle} />
-          {props.auth} with Google
+          Continue with Google
         </button>
       </div>
       <h5 style={heading5Span}>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { register, login, newRegisterEmail, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueMobile, uniqueRollNumber, validateEmailNPasswordForReset, updateResetPassword, sendOtp, updatePassword, getApprovedMemberByFilter } = require('../controller/userAuth');
+const { register, login, newRegisterEmail, getPendingMembers, getApprovedMembers, updatePendingMember, deletePendingMember, uniqueMobile, uniqueRollNumber, validateEmailNPasswordForReset, updateResetPassword, sendOtp, updatePassword, getApprovedMemberByFilter, searchMember } = require('../controller/userAuth');
 
 const router = express.Router();
 
@@ -17,5 +17,6 @@ router.post('/validateresetpassword', validateEmailNPasswordForReset);
 router.post('/updateresetpassword', updateResetPassword);
 router.post('/sendotp',sendOtp);
 router.post('/updatepassword',updatePassword);
+router.post('/filtermembers', searchMember);
 
 module.exports = router;
