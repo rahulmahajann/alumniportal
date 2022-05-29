@@ -66,7 +66,7 @@ function UpperHeaderUserLog(props) {
             </Link>
 
             <div style = { linkDiv__headerUpper } >
-                <Link style = { link__linkDiv } to = {'/userprofile'} >{headerEmail}</Link>   
+                <Link style = { link__linkDiv } to = {'/userprofile'} >Profile: {headerEmail}</Link>   
                 {/* <Link to = {'/'} onClick = {logoutFunction} >Logout</Link> */}
                 {/* <button onClick = { logoutFunction } >LogOut</button> */}
             </div> 

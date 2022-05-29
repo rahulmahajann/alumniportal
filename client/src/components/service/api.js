@@ -17,6 +17,7 @@ export const register = async (username) => {
 export const login = async (loginDetails) => {
     try{
         const awazAii = await axios.post(`${URL}/login`, loginDetails);
+        console.log("🚀 ~ file: api.js ~ line 20 ~ login ~ awazAii", awazAii.data)
         return{
             information: awazAii.data
         }

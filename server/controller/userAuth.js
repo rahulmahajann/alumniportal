@@ -1,6 +1,7 @@
 const userAuth = require('../model/userAuthModel.js');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
+const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
     
@@ -141,11 +142,13 @@ const login = async (req, res) => {
     // console.log(isUserEmailExist);
     if(isUserEmailExist && isUserEmailExist.userPassword){
         const isValidPassword = await bcrypt.compare(userPassword, isUserEmailExist.userPassword);
-        console.log("🚀 ~ file: userAuth.js ~ line 122 ~ login ~ isValidPassword", isValidPassword)
+        console.log("🚀 ~ file: userAuth.js ~ line 122 ~ login ~ isValidPassword", isValidPassword);
+        const token = jwt.sign({_id: isUserEmailExist._id}, 'Site by adgitm');
         if(isValidPassword){
             return res.json({
                 message: 'successfully logged in!',
                 userUniqueId: isUserEmailExist._id,
+                token
             })
         }else{
             return res.json({
@@ -398,9 +401,11 @@ const checkUserWithGoogle = async (req, res) => {
             success: false
         })
     }
+    const token = jwt.sign({_id: apiResponse._id}, 'Site by adgitm');
     return res.send({
         success: true,
-        message: 'login'
+        message: 'login',
+        token
     })
     // Mehul Pandey 020
 }
