@@ -55,7 +55,7 @@ const userAuthSchema = mongoose.Schema({
 
         userImage: {
             type: String,
-            reqruied: true
+            required: true,
         },
 
         isApproved:{

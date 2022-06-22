@@ -6,18 +6,38 @@ function ContainerApproval(props){
     // console.log(props);
     const userInfo = props.userInfo;
 
+    console.log(userInfo);
     const main__Container = {
         display: 'flex',
+        flexDirection:'row',
+        flexWrap:'wrap',
+        justifyContent:'space-around',
         width: '100%',
         marginBottom: '10px',
-        border: 'dashed black 2px',
+        border: 'solid black 2px',
         padding: '20px',
         background: color2,
         borderRadius: '10px'
     }   
 
     const image__Container = {
-        borderRight: '1px solid black'
+        // borderRight: '1px solid black',
+        // minWidth:'100px',
+        // width:'200px',
+        // textAlign:'center',
+        display:'flex',
+        width:'200px',
+        height:'auto',
+        justifyContent: 'center',
+        alignItems:'center',
+    }
+
+    const image__Style={
+        minHeight:'200px',
+        minWidth:'200px',
+        height:'auto',
+        width:'95%',
+        
     }
 
     const content__Container = {
@@ -26,9 +46,10 @@ function ContainerApproval(props){
         flexDirection: 'column',
         marginLeft: '25px',
         alignItem: 'center',
-        width: '100%',
+        // width: '400px',
         wordWrap:'break-word',
         textAlign:'left',
+        // width:'60%',
 
         // margin: 'auto'
         // justifyContent: 'center'
@@ -45,9 +66,9 @@ function ContainerApproval(props){
     return(
         <div style ={main__Container}>
             
-            <div style = {image__Container}>
-                <h1>User IMAGE</h1>
-            </div>
+            <a  style={image__Container} href = {userInfo.userImage} target = "_blank" rel = "noopener noreferrer">
+                <img style={image__Style} alt="user DP" src={userInfo.userImage}></img>
+            </a>
 
             <div style = {content__Container} >
 

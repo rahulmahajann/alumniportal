@@ -6,6 +6,7 @@ import './RegisterForm.css';
 import { color10, color11, color2, color3, color8 } from '../../constants/colors';
 import { newRegisterEmail, userByGoogle } from '../../service/api';
 import loginWithGoogle from "../../../service/Auth/googleLogin";
+import { toast } from 'react-toastify';
 
 
 const initialValue = {
@@ -137,14 +138,18 @@ function RegisterForm(props){
         })
     }
 
-    const submitUserEmail = async(e) => {
-        // console.log(userRegisterEmail);
-        const apiInformation = await newRegisterEmail(userRegisterEmail);
+    const submitUserEmail = async(mail,e) => {
+        toast.loading("Loading");
+        console.log("yaha",mail);
+        const apiInformation = await newRegisterEmail({"userEmail":mail});
         console.log(apiInformation);
         if(apiInformation.information === 'Unique Email'){
-            localStorage.setItem('email', userRegisterEmail.userEmail);
+            toast.dismiss();
+            localStorage.setItem('email', mail);
             navigate('/userregdetail');
         }else{
+            toast.dismiss();
+            toast.error(apiInformation.information);
             console.log(apiInformation.information);
         }
     }
@@ -157,6 +162,29 @@ function RegisterForm(props){
         );
         const apiInformation = await userByGoogle(payload);
         console.log(apiInformation);
+        if(!apiInformation.success){
+            if(apiInformation.message == "signup"){
+                console.log(payload.userEmail);
+
+                //check these lines
+                // alternate pe sahi chalrha hai
+                // setUserRegisterEmail({"userEmail":payload.userEmail});
+                // console.log(userRegisterEmail);
+                localStorage.setItem("platform",'google');               
+                submitUserEmail(payload.userEmail);
+            }
+            else{
+                toast.error(apiInformation.message);
+                navigate('/login');
+            }
+        }
+        else{
+            localStorage.setItem("userEmail",payload.userEmail);
+            localStorage.setItem("token",apiInformation.token);
+            toast.success("Login Success");
+            navigate('/');
+
+        }
         // api call maine abhi bnai hai!
         // if(response)
       }
@@ -179,7 +207,7 @@ function RegisterForm(props){
             <div className = 'group' style = { register__Form } >
                 <label>EmailId</label>
                 <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userEmail' type = 'email' placeholder = 'Email' />
-                <button onClick = { (e) => submitUserEmail(e) } style = {register__FormSubmitButton} >Submit</button>
+                <button onClick = { (e) => submitUserEmail(userRegisterEmail.userEmail,e) } style = {register__FormSubmitButton} >Submit</button>
             </div>
             <hr />
             <h3 style = {heading3} >
