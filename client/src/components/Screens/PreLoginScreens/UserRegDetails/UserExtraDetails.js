@@ -8,10 +8,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
 const initialValue = {
-    userImage: 'default',
+    // userImage: 'default',
     userEnrollmentNumber: '',
     userBatch: '',
-    userCourseAndBranch: ''
+    userCourseAndBranch: '',
+    platform:''
 }
 
 function UserExtraDetails(props){
@@ -53,6 +54,7 @@ function UserExtraDetails(props){
             toast.error(isUniqueRollNumber);
             // count--;
         }else{
+            userInformation.platform=localStorage.getItem("platform");
             if(count == Object.values(userRegisterDetails).length){
                 const apiInformation = await register(userRegisterDetails);
                 if(apiInformation.information === 'userCreated'){
@@ -128,8 +130,8 @@ function UserExtraDetails(props){
                             <option value="B.Tech(EEE)">B.Tech(EEE)</option>
                             <option value="B.Tech(MAE)">B.Tech(MAE)</option>
                             <option value="B.Tech(Civil)">B.Tech(Civil)</option>
-                            <option value="Er">BBA</option>
-                            <option value="Other">MBA</option>
+                            <option value="BBA">BBA</option>
+                            <option value="MBA">MBA</option>
                         </select>
                     </div>
                     <div className = 'group'>
@@ -142,7 +144,7 @@ function UserExtraDetails(props){
                             <option value="">Select</option>
                             {
                                 batch.map((item, ind) => (
-                                    <option value = {item} >{item}</option>
+                                    <option value = {item} key={ind} >{item}</option>
                                 ))
                             }
                                 

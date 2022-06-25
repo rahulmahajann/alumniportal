@@ -2,34 +2,37 @@ import React, { useEffect, useState } from "react";
 import { deletePendingMember, getPendingMembers, updatePendingMember } from "../../../../service/api";
 import ContainerApproval from "./ReusableApproveUI/ContainerApproval";
 
-function PendingMembersList(){
+function PendingMembersList(props){
     
-    const [pendingMembers, setPendingMembers] = useState('');
-    const [renderSwitch,setRenderSwitch] = useState(false);
+    // const [pendingMembers, setPendingMembers] = useState({});
+    // const [renderSwitch,setRenderSwitch] = useState(false);
 
 
-    useEffect(async () => {
-        const temp = await getPendingMembers();
-        // console.log(temp);
-        setPendingMembers(temp)
-    }, [renderSwitch]);
+    // useEffect(async () => {
+    //     const temp = await getPendingMembers();
+    //     // console.log(temp);
+    //     setPendingMembers(temp)
+    // }, [renderSwitch]);
 
     // console.log(pendingMembers);
+    // setPendingMembers(props.members);
 
+    console.log(props);
 
     const approveMember = async (e, userId) => {
         e.preventDefault();
         console.log('approve button pe click hua!');
         const temp = await updatePendingMember(userId);
-        console.log("valid");
-        setRenderSwitch(!renderSwitch);
+        // console.log("valid");
+        // setRenderSwitch(!renderSwitch);
+        window.location.reload();
     }
 
     const deleteMember = async (e,userId)=>{
         // e.preventDefault();
         const temp = await deletePendingMember(userId);
-        console.log("delete",temp);
-        setRenderSwitch(!renderSwitch);
+        // console.log("delete",temp);
+        window.location.reload();
     }
 
     const mainComponent = {
@@ -58,8 +61,8 @@ function PendingMembersList(){
     return(
         <div>
             {
-                pendingMembers && pendingMembers?.map((item, ind) => (
-                    <div  style = {mainComponent} >
+                props.members && props.members?.map((item, ind) => (
+                    <div  style = {mainComponent} key={ind}>
                         <ContainerApproval userInfo = {item} />
                         <div style = {div__buttons} >
                             <button style = {buttons__PendingMembersList} onClick = {(e) => approveMember(e, item._id)} >Approve</button>

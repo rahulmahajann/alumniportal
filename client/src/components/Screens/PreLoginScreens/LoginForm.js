@@ -192,6 +192,27 @@ function LoginForm(props) {
     );
     const apiInformation = await userByGoogle(payload);
     console.log(apiInformation);
+
+    if(!apiInformation.success){
+      if(apiInformation.message == "signup"){
+          console.log(payload.userEmail);
+          
+          
+          toast.error("You have not signed up");
+          navigate('/register');
+      }
+      else{
+          toast.error(apiInformation.message);
+          navigate('/login');
+      }
+  }
+  else{
+      localStorage.setItem("userEmail",payload.userEmail);
+      localStorage.setItem("token",apiInformation.token);
+      toast.success("Login Success");
+      navigate('/');
+
+  }
   }
 
   return (

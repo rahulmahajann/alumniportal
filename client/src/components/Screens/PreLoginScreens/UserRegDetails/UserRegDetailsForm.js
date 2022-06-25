@@ -20,6 +20,7 @@ const initialValue = {
     userDOB:'',
     userMobile:'',
     userCity:'',    
+    userImage:'',
 }
 
 
@@ -76,8 +77,16 @@ function UserRegDetailsForm(props){
         marginLeft:'25%',
     }
 
+    const news__FormTitle = {
+        height: '40px',
+        marginTop: '20px',
+        marginBottom: '15px',
+        width:'100%',
+    }
     const [userRegisterDetails, setUserRegisterDetails] = useState(initialValue);
     const [continueForm, setContinueForm] = useState(false);
+    const [img,setImg] = useState();
+
 
     const handleChange = async (e) => {
 
@@ -92,6 +101,24 @@ function UserRegDetailsForm(props){
 
         let count = 0;
 
+        const data = new FormData();
+        data.append("file", img);
+        data.append('upload_preset', 'insta-clone');
+        data.append("cloud_name", "mehulp1612");
+        const options = {
+            method: "POST",
+            body: data,
+        };
+
+        const imgResponse = await fetch('https://api.Cloudinary.com/v1_1/mehulp1612/image/upload', options);
+        const imgURL = await imgResponse.json();
+
+        setUserRegisterDetails({
+            ...userRegisterDetails,
+            userImage:imgURL.url
+        });
+        
+        console.log(userRegisterDetails);
         for(const property in userRegisterDetails){
             if(!userRegisterDetails[property]){
                 toast.error(`${property.substring(4)} is missing`);
@@ -160,6 +187,10 @@ function UserRegDetailsForm(props){
                     <div className = 'group'>
                         <label>City</label>
                         <input onChange = { (e) => handleChange(e) } style = {register__FormEmail} name = 'userCity' type = 'text' placeholder = 'City' disabled = {continueForm}/>
+                    </div>
+                    <div className='group'>
+                        <label>Image</label>
+                        <input style={news__FormTitle} type="file" name="img" onChange={(e) => setImg(e.target.files[0])} />  
                     </div>
                     <button style = {register__FormSubmitButton} onClick = { (e) => {loadNewData(e)} } disabled = {continueForm} >Continue</button>
                 </div>
