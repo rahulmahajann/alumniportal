@@ -85,7 +85,7 @@ function UserRegDetailsForm(props){
     }
     const [userRegisterDetails, setUserRegisterDetails] = useState(initialValue);
     const [continueForm, setContinueForm] = useState(false);
-    const [img,setImg] = useState();
+    const [isImageUploaded, setIsImageUploaded] = useState(false);
 
 
     const handleChange = async (e) => {
@@ -97,10 +97,7 @@ function UserRegDetailsForm(props){
         })
     }
 
-    const loadNewData = async (e) => {
-
-        let count = 0;
-
+    const uploadToCloudinary = async (img) => {
         const data = new FormData();
         data.append("file", img);
         data.append('upload_preset', 'insta-clone');
@@ -113,10 +110,34 @@ function UserRegDetailsForm(props){
         const imgResponse = await fetch('https://api.Cloudinary.com/v1_1/mehulp1612/image/upload', options);
         const imgURL = await imgResponse.json();
 
+        setIsImageUploaded(true);
+
         setUserRegisterDetails({
             ...userRegisterDetails,
             userImage:imgURL.url
         });
+    }
+
+    const loadNewData = async (e) => {
+
+        let count = 0;
+
+        // const data = new FormData();
+        // data.append("file", img);
+        // data.append('upload_preset', 'insta-clone');
+        // data.append("cloud_name", "mehulp1612");
+        // const options = {
+        //     method: "POST",
+        //     body: data,
+        // };
+
+        // const imgResponse = await fetch('https://api.Cloudinary.com/v1_1/mehulp1612/image/upload', options);
+        // const imgURL = await imgResponse.json();
+
+        // setUserRegisterDetails({
+        //     ...userRegisterDetails,
+        //     userImage:imgURL.url
+        // });
         
         console.log(userRegisterDetails);
         for(const property in userRegisterDetails){
@@ -190,9 +211,9 @@ function UserRegDetailsForm(props){
                     </div>
                     <div className='group'>
                         <label>Image</label>
-                        <input style={news__FormTitle} type="file" name="img" onChange={(e) => setImg(e.target.files[0])} />  
+                        <input style={news__FormTitle} type="file" name="img" onChange={(e) => uploadToCloudinary(e.target.files[0])} />  
                     </div>
-                    <button style = {register__FormSubmitButton} onClick = { (e) => {loadNewData(e)} } disabled = {continueForm} >Continue</button>
+                    <button style = {register__FormSubmitButton} onClick = { (e) => {loadNewData(e)} } disabled = {!isImageUploaded} >Continue</button>
                 </div>
             </div>
 

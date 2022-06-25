@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { color2 } from '../../constants/colors';
+import { color2, color6 } from '../../constants/colors';
 import { adminLogin } from '../../service/api';
 import './LoginForm.css';
 import { toast } from 'react-toastify';
@@ -60,7 +60,8 @@ function LoginAdminForm(props){
 
     const link__Style = {
         textDecoration: 'none',
-        color: 'inherit'
+        color: color6,
+        fontSize: "15px",
     }
 
     const login__Input={

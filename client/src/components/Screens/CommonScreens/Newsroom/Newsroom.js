@@ -85,6 +85,7 @@ function NewsRoom(){
         // background:'#F6F6F6',
         // borderBottom:`1px solid ${color2}`,
     }
+    const newsroomMessage = 'Please login to view this page.'
     return(
         <>
             {
@@ -97,16 +98,14 @@ function NewsRoom(){
                 <NormalScreenBody
                     Heading = {'Newsroom'}
                     // Content={!realSearchQuery?<NewsroomList/>:<NewsroomSearchList searchQuery={realSearchQuery} />}
-                    Content = {[
-                    <div style={search_container_Style} className='search_container'>
-                        <input placeholder="Type here to search" style={{marginRight:'5px'}}type="text" onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
-                        <button style={{marginLeft:'5px'}}onClick={(e)=>{searchHandler(e)}}>Search</button>
-                    </div>,     
-                    <NewsroomList data={newsroomData}/>,
-                    <button style={loadMoreStyle}  hidden={!loadMoreEnable} onClick={(e)=>{loadMoreHandler(e)}}>Load More</button>
-                ]
-
-                }>       
+                    Content = {localStorage.getItem('token') ? [
+                        <div style={search_container_Style} className='search_container'>
+                            <input placeholder="Type here to search" style={{marginRight:'5px'}}type="text" onChange={(e)=>{setSearchQuery(e.target.value)}}></input>
+                            <button style={{marginLeft:'5px'}}onClick={(e)=>{searchHandler(e)}}>Search</button>
+                        </div>,     
+                        <NewsroomList data={newsroomData}/>,
+                        <button style={loadMoreStyle}  hidden={!loadMoreEnable} onClick={(e)=>{loadMoreHandler(e)}}>Load More</button>
+                    ] : newsroomMessage}>       
                 </ NormalScreenBody>
 
                 

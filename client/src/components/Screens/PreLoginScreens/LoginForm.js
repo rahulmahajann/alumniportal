@@ -7,6 +7,8 @@ import {
   color11,
   color2,
   color3,
+  color5,
+  color6,
   color8,
 } from "../../constants/colors";
 import { login, userByGoogle } from "../../service/api";
@@ -145,8 +147,16 @@ function LoginForm(props) {
 
   const link__Style = {
     textDecoration: "none",
-    color: "inherit",
+    color: color6,
+    fontSize: "15px",
+
   };
+
+  const link_div = {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between"
+  }
 
   const [userLoginData, setUserLoginData] = useState(initialValue);
   const navigate = useNavigate();
@@ -255,12 +265,14 @@ function LoginForm(props) {
             <label>Password</label>
           </div>
         </div>
-        <Link style={link__Style} to={"/resetpassword"}>
-          Reset Password?
-        </Link>
-        <Link style={link__Style} to={"/forgotpassword"}>
-          Forgot Password?
-        </Link>
+        <div style = {link_div} >
+          <Link style={link__Style} to={"/resetpassword"}>
+            Reset Password?
+          </Link>
+          <Link style={link__Style} to={"/forgotpassword"}>
+            Forgot Password?
+          </Link>
+        </div>
         <button
           onClick={(e) => saveUserLoginEmail(e)}
           style={register__FormSubmitButton}

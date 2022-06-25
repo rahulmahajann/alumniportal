@@ -13,6 +13,9 @@ import UpperHeaderUserLog from '../../../PostLoginComponents/User/Header/UpperHe
 import ApprovedMembersList from '../../PostLoginScreens/Admin/Members/ApprovedMembersList';
 
 function Members(){
+
+    const memberMessage = 'Please login to view this page.';
+
     return(
         <>
             {
@@ -21,7 +24,7 @@ function Members(){
             {
                 localStorage.getItem('isAdmin') ? <LowerHeaderAdmin /> : <LowerHeader />
             }
-            <NormalScreenBody Heading = {'Members'} Content = {<ApprovedMembersList />} />
+            <NormalScreenBody Heading = {'Members'} Content = {localStorage.getItem('token') ? <ApprovedMembersList /> : memberMessage} />
             <Footer />
         </>
     )

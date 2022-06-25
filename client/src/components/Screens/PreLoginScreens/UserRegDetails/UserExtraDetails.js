@@ -11,13 +11,13 @@ const initialValue = {
     // userImage: 'default',
     userEnrollmentNumber: '',
     userBatch: '',
-    userCourseAndBranch: '',
-    platform:''
+    userCourseAndBranch: ''
 }
 
 function UserExtraDetails(props){
 
     const initialInformation = props.initialInformation;
+    console.log("🚀 ~ file: UserExtraDetails.js ~ line 21 ~ UserExtraDetails ~ initialInformation", initialInformation)
 
     const userInformation = {
         ...initialInformation,
@@ -38,7 +38,7 @@ function UserExtraDetails(props){
     const submitUserRegisterDetails = async(e) => {
 
         var count = 0;
-
+        console.log(userRegisterDetails);
         for(const property in userRegisterDetails){
             if(!userRegisterDetails[property]){
                 console.log(property, "is missing");

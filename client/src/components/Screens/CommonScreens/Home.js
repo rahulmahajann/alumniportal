@@ -16,8 +16,8 @@ function Home(){
             }
             
               
-                <LowerHeaderAdmin />
-                {/* <LowerHeader /> */}
+                {/* <LowerHeaderAdmin /> */}
+                <LowerHeader />
             
             <NormalScreenBody
                 Heading = {'Home'}
